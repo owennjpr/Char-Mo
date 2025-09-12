@@ -9,7 +9,8 @@ interface LetterState {
   display: string;
   target: string;
 }
-function Line(props: LineProps) {
+
+export default function Line(props: LineProps) {
   const { line, order = 0 } = props;
   const maxDelay = 700;
 
@@ -50,5 +51,3 @@ function Line(props: LineProps) {
     </p>
   );
 }
-
-export default Line;

@@ -2,6 +2,7 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
+import CodeBlock from "./CodeBlock";
 
 export default function PageWrapper({
   children,
@@ -15,17 +16,14 @@ export default function PageWrapper({
     <div className="w-full h-screen flex flex-row gap-1 overflow-hidden">
       {/* Left content area - always present */}
       <div className="w-1/2">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        <motion.div
+          key={pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          {children}
+        </motion.div>
       </div>
 
       <AnimatePresence>
@@ -39,10 +37,10 @@ export default function PageWrapper({
             transition={{
               duration: 0.5,
               ease: "easeInOut",
-              opacity: { duration: 0.1 },
+              opacity: { duration: 0.5 },
             }}
           >
-            {/* Code panel content could go here */}
+            <CodeBlock contentpath={pathname} />
           </motion.div>
         )}
       </AnimatePresence>

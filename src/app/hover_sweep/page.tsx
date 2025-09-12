@@ -1,14 +1,14 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import HoverSweep from "../components/hover_sweep/HoverSweep";
+import LinkButton from "../components/LinkButton";
 
 function page() {
   return (
     <div className="p-4">
-      <Link href={"/"} className="font-cutive">
-        {"Back to Home"}
-      </Link>
+      <LinkButton path="/" back={true}>
+        Back to Home
+      </LinkButton>
       <p className="font-cutive text-2xl pt-2">Hover Sweep</p>
       <HoverSweep text="Lorem ipsum dolor sit amet" />
     </div>

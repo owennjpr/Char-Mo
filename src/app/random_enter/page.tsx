@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import Line from "../components/random_enter/Line";
-import Link from "next/link";
+import LinkButton from "../components/LinkButton";
 function RandomEnter() {
   return (
     <div className="p-4">
-      <Link href={"/"} className="font-cutive">
-        {"Back to Home"}
-      </Link>
+      <LinkButton path="/" back={true}>
+        Back to Home
+      </LinkButton>
       <div className="pb-6">
         <p className="font-cutive text-2xl pt-2">Individual Lines</p>
         <Line
