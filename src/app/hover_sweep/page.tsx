@@ -5,7 +5,7 @@ import HoverSweep from "../components/hover_sweep/HoverSweep";
 
 function page() {
   return (
-    <div className="p-4 w-1/2">
+    <div className="p-4">
       <Link href={"/"} className="font-cutive">
         {"Back to Home"}
       </Link>

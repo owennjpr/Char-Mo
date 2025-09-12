@@ -4,7 +4,7 @@ import Line from "../components/random_enter/Line";
 import Link from "next/link";
 function RandomEnter() {
   return (
-    <div className="p-4 w-1/2">
+    <div className="p-4">
       <Link href={"/"} className="font-cutive">
         {"Back to Home"}
       </Link>
