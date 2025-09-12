@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 interface LineProps {
   line: string;
+  order?: number;
 }
 
 interface LetterState {
@@ -9,7 +10,8 @@ interface LetterState {
   target: string;
 }
 function Line(props: LineProps) {
-  const { line } = props;
+  const { line, order = 0 } = props;
+  const maxDelay = 700;
 
   const [letters, setLetters] = useState<LetterState[]>(
     line.split("").map((char) => {
@@ -29,10 +31,10 @@ function Line(props: LineProps) {
   useEffect(() => {
     letters.forEach((l, i) => {
       (async () => {
-        await wait(Math.random() * 800);
+        await wait(Math.random() * maxDelay + order * 200);
         updateCharacter(i, ["-", "_", ".", "-"][Math.floor(Math.random() * 4)]);
 
-        await wait(Math.random() * 800);
+        await wait(Math.random() * maxDelay);
         updateCharacter(i, l.target);
       })();
     });
