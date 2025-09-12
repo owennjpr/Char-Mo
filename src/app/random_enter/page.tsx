@@ -1,15 +1,14 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Line from "../components/random_enter/Line";
 import Link from "next/link";
-
 function RandomEnter() {
   return (
-    <div className="p-4">
+    <div className="p-4 w-1/2">
       <Link href={"/"} className="font-cutive">
-        {"<-- Back"}
+        {"Back to Home"}
       </Link>
-      <div className="h-40">
+      <div className="pb-6">
         <p className="font-cutive text-2xl pt-2">Individual Lines</p>
         <Line
           order={0}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cutive_Mono } from "next/font/google";
 import "./globals.css";
+import PageWrapper from "./PageWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cutiveMono.variable} antialiased`}
       >
-        {children}
+        <PageWrapper>{children}</PageWrapper>
       </body>
     </html>
   );

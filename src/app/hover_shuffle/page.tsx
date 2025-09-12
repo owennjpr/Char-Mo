@@ -5,9 +5,9 @@ import ShuffleText from "../components/hover_shuffle/ShuffleText";
 
 function HoverShuffle() {
   return (
-    <div className="p-4">
+    <div className="p-4 w-1/2">
       <Link href={"/"} className="font-cutive">
-        {"<-- Back"}
+        {"Back to Home"}
       </Link>
       <p className="font-cutive text-2xl pt-2">Individual Characters</p>
       <ShuffleText fullWords={false} text="Lorem ipsum dolor sit amet" />
