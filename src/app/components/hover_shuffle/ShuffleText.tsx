@@ -21,7 +21,7 @@ function ShuffleText(props: ShuffleTextProps) {
 
   useEffect(() => {
     if (hover === -1) {
-      setContent((prev) => prev.map((t, i) => ({ ...t, display: t.original })));
+      setContent((prev) => prev.map((t) => ({ ...t, display: t.original })));
       return;
     }
     const interval = setInterval(() => {
