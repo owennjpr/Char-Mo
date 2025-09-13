@@ -23,7 +23,7 @@ function LinkButton(props: LinkButtonProps) {
     if (!back) {
       router.push(path);
     } else {
-      router.back();
+      router.replace("/");
     }
   };
   return (

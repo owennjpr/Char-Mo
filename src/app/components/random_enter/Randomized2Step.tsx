@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-interface LineProps {
-  line: string;
+interface Randomized2StepProps {
+  text: string;
   order?: number;
 }
 
@@ -10,12 +10,12 @@ interface LetterState {
   target: string;
 }
 
-export default function Line(props: LineProps) {
-  const { line, order = 0 } = props;
+export default function Randomized2Step(props: Randomized2StepProps) {
+  const { text, order = 0 } = props;
   const maxDelay = 700;
 
   const [letters, setLetters] = useState<LetterState[]>(
-    line.split("").map((char) => {
+    text.split("").map((char) => {
       return { display: "", target: char };
     })
   );
@@ -39,7 +39,7 @@ export default function Line(props: LineProps) {
         updateCharacter(i, l.target);
       })();
     });
-  }, []);
+  }, [order]);
 
   return (
     <p className="font-cutive w-full">

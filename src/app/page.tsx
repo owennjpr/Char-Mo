@@ -1,10 +1,11 @@
 "use client";
-import Line from "./components/random_enter/Line";
+import Randomized2Step from "./components/random_enter/Randomized2Step";
 import ShuffleText from "./components/hover_shuffle/ShuffleText";
 import HoverSweep from "./components/hover_sweep/HoverSweep";
 import LinkButton from "./components/LinkButton";
 import { motion } from "motion/react";
 import { useState } from "react";
+import TypedSweep from "./components/typed_sweep/TypedSweep";
 
 export default function Home() {
   const [refresh, setRefresh] = useState<number>(0);
@@ -42,11 +43,18 @@ export default function Home() {
           </div>
           <div className="pl-4">
             <LinkButton
-              key={"enter" + refresh}
-              path="/random_enter"
+              key={"2step" + refresh}
+              path="/enter_random"
               back={false}
             >
-              <Line line="2 Step Randomized" order={0} />
+              <Randomized2Step text="2 Step Randomized" order={0} />
+            </LinkButton>
+            <LinkButton
+              key={"typed" + refresh}
+              path="/enter_typed_sweep"
+              back={false}
+            >
+              <TypedSweep text="Typed Sweep" delay={40} />
             </LinkButton>
           </div>
           <p className="text-xl opacity-50">Hovers</p>
