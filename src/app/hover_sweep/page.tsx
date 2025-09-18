@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import HoverSweep from "../components/hover_sweep/HoverSweep";
+import HoverSweep from "../components/effects/HoverSweep";
 import LinkButton from "../components/LinkButton";
 
 function page() {

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Randomized2Step from "../components/random_enter/Randomized2Step";
+import Randomized2Step from "../components/effects/Randomized2Step";
 import LinkButton from "../components/LinkButton";
 function RandomEnter() {
   return (

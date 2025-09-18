@@ -1,11 +1,12 @@
 "use client";
-import Randomized2Step from "./components/random_enter/Randomized2Step";
-import ShuffleText from "./components/hover_shuffle/ShuffleText";
-import HoverSweep from "./components/hover_sweep/HoverSweep";
+import Randomized2Step from "./components/effects/Randomized2Step";
+import ShuffleText from "./components/effects/ShuffleText";
+import HoverSweep from "./components/effects/HoverSweep";
 import LinkButton from "./components/LinkButton";
 import { motion } from "motion/react";
 import { useState } from "react";
-import TypedSweep from "./components/typed_sweep/TypedSweep";
+import TypedSweep from "./components/effects/TypedSweep";
+import CounterSweep from "./components/effects/CounterSweep";
 
 export default function Home() {
   const [refresh, setRefresh] = useState<number>(0);
@@ -55,6 +56,13 @@ export default function Home() {
               back={false}
             >
               <TypedSweep text="Typed Sweep" delay={40} />
+            </LinkButton>
+            <LinkButton
+              key={"number" + refresh}
+              path="/enter_number_sweep"
+              back={false}
+            >
+              <CounterSweep text="Number Sweep" delay={40} cyclesPerDigit={3} />
             </LinkButton>
           </div>
           <p className="text-xl opacity-50">Hovers</p>

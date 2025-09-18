@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import ShuffleText from "../components/hover_shuffle/ShuffleText";
+import ShuffleText from "../components/effects/ShuffleText";
 import LinkButton from "../components/LinkButton";
 
 function HoverShuffle() {

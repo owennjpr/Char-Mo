@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import LinkButton from "../components/LinkButton";
-import TypedSweep from "../components/typed_sweep/TypedSweep";
+import TypedSweep from "../components/effects/TypedSweep";
 
 function Page() {
   return (
