@@ -5,7 +5,7 @@ interface HoverSweepProps {
   text: string;
 }
 
-function HoverSweep(props: HoverSweepProps) {
+export default function HoverSweep(props: HoverSweepProps) {
   const { text } = props;
   const [hover, setHover] = useState<boolean>(false);
   const [sweepIndex, setSweepIndex] = useState<number>(-1);
@@ -51,7 +51,7 @@ function HoverSweep(props: HoverSweepProps) {
   }, [flicker]);
 
   return (
-    <div
+    <p
       className="font-cutive"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -61,8 +61,6 @@ function HoverSweep(props: HoverSweepProps) {
         : text.slice(0, sweepIndex) +
           (flickerState ? "_" : " ") +
           text.slice(sweepIndex + 1)}
-    </div>
+    </p>
   );
 }
-
-export default HoverSweep;

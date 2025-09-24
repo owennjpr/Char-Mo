@@ -30,7 +30,7 @@ export default function PageWrapper({
         {!isHomePage && (
           <motion.div
             key="code-pane"
-            className="p-4 w-1/2 bg-[#0002]"
+            className="p-4 w-1/2 h-full bg-[#0002]"
             initial={{ x: "100%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}

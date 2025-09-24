@@ -4,27 +4,29 @@ interface TypedSweepProps {
   text: string;
   delay: number;
 }
-function TypedSweep(props: TypedSweepProps) {
+export default function TypedSweep(props: TypedSweepProps) {
   const { text, delay } = props;
-  const [sweep, setSweep] = useState<number>(0);
+  const [sweepIndex, setSweepIndex] = useState<number>(0);
 
   useEffect(() => {
+    setSweepIndex(0);
     const interval = setInterval(() => {
-      if (sweep == text.length) {
-        clearInterval(interval);
-      } else {
-        setSweep((s) => s + 1);
-      }
+      setSweepIndex((s) => {
+        if (s == text.length) {
+          clearInterval(interval);
+          return s;
+        } else {
+          return s + 1;
+        }
+      });
     }, delay);
 
     return () => clearInterval(interval);
-  }, [sweep, text, delay]);
+  }, [text, delay]);
 
   return (
-    <div className="font-cutive">
-      {text.slice(0, sweep) + (sweep < text.length ? "_" : "")}
-    </div>
+    <p className="font-cutive">
+      {text.slice(0, sweepIndex) + (sweepIndex < text.length ? "_" : "")}
+    </p>
   );
 }
-
-export default TypedSweep;

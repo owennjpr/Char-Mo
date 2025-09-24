@@ -6,7 +6,7 @@ import LinkButton from "./components/LinkButton";
 import { motion } from "motion/react";
 import { useState } from "react";
 import TypedSweep from "./components/effects/TypedSweep";
-import CounterSweep from "./components/effects/CounterSweep";
+import NumberSweep from "./components/effects/NumberSweep";
 
 export default function Home() {
   const [refresh, setRefresh] = useState<number>(0);
@@ -16,8 +16,8 @@ export default function Home() {
         <p className="text-2xl opacity-25">Dynamic Text Animations</p>
         <p className="pl-4 pb-4">
           this is a collection of text/letter replacement based animations built
-          in react. click an effect to see more examples of its use as well as
-          code snippets.
+          with react, typescript, and a little bit of tailwind. click an effect
+          to see more examples of its use as well as code snippets.
         </p>
         <p className="text-2xl opacity-25">Effects</p>
 
@@ -62,7 +62,7 @@ export default function Home() {
               path="/enter_number_sweep"
               back={false}
             >
-              <CounterSweep text="Number Sweep" delay={40} cyclesPerDigit={3} />
+              <NumberSweep text="Number Sweep" delay={40} cyclesPerDigit={3} />
             </LinkButton>
           </div>
           <p className="text-xl opacity-50">Hovers</p>

@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
+import { numberSweepCode, random2StepCode, typedSweepCode } from "./CodeChunks";
 
 interface CodeBlockProps {
   contentpath: string;
@@ -12,7 +13,7 @@ function CodeBlock(props: CodeBlockProps) {
 
     switch (contentpath) {
       case "/enter_random":
-        setPageContent(<div>random enter code here</div>);
+        setPageContent(random2StepCode);
         break;
       case "/hover_shuffle":
         setPageContent(<div>hover shuffle code here</div>);
@@ -22,7 +23,10 @@ function CodeBlock(props: CodeBlockProps) {
         setPageContent(<div>hover sweep code here</div>);
         break;
       case "/enter_typed_sweep":
-        setPageContent(<div>typed sweep code here</div>);
+        setPageContent(typedSweepCode);
+        break;
+      case "/enter_number_sweep":
+        setPageContent(numberSweepCode);
         break;
       default:
         setPageContent(null);
@@ -30,7 +34,11 @@ function CodeBlock(props: CodeBlockProps) {
     }
   }, [contentpath]);
 
-  return <div className="font-cutive">{pageContent}</div>;
+  return (
+    <div className="w-full h-full font-cutive whitespace-pre-wrap overflow-scroll">
+      {pageContent}
+    </div>
+  );
 }
 
 export default CodeBlock;

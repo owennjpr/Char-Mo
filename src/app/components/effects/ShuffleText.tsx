@@ -10,7 +10,7 @@ interface TextState {
   display: string;
   original: string;
 }
-function ShuffleText(props: ShuffleTextProps) {
+export default function ShuffleText(props: ShuffleTextProps) {
   const { text, fullWords } = props;
   const [content, setContent] = useState<TextState[]>(
     (fullWords ? text.split(" ") : text.split("")).map((t) => {
@@ -41,7 +41,7 @@ function ShuffleText(props: ShuffleTextProps) {
     return () => clearInterval(interval);
   }, [hover, fullWords]);
   return (
-    <div className="font-cutive">
+    <p className="font-cutive">
       {content.map((t, i) => {
         return (
           <span
@@ -51,8 +51,6 @@ function ShuffleText(props: ShuffleTextProps) {
           >{`${t.display}${fullWords ? " " : ""}`}</span>
         );
       })}
-    </div>
+    </p>
   );
 }
-
-export default ShuffleText;

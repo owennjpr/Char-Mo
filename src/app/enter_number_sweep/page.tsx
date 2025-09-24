@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import LinkButton from "../components/LinkButton";
-import CounterSweep from "../components/effects/CounterSweep";
+import NumberSweep from "../components/effects/NumberSweep";
 
 function Page() {
   return (
@@ -12,11 +12,11 @@ function Page() {
       <p className="font-cutive text-2xl pt-2">
         Number Sweep (50ms, 4 cycles per digit)
       </p>
-      <CounterSweep text="123456789" delay={50} cyclesPerDigit={4} />
+      <NumberSweep text="123456789" delay={50} cyclesPerDigit={4} />
       <p className="font-cutive text-2xl pt-2">
         Number Sweep (80ms, 2 cycles per digit)
       </p>
-      <CounterSweep text="12345678901234567890" delay={80} cyclesPerDigit={2} />
+      <NumberSweep text="12345678901234567890" delay={80} cyclesPerDigit={2} />
     </div>
   );
 }
