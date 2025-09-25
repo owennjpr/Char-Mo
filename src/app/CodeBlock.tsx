@@ -35,7 +35,7 @@ function CodeBlock(props: CodeBlockProps) {
   }, [contentpath]);
 
   return (
-    <div className="w-full h-full font-cutive whitespace-pre-wrap overflow-scroll">
+    <div className="w-full h-full font-cutive whitespace-pre-wrap overflow-y-scroll">
       {pageContent}
     </div>
   );

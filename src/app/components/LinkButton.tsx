@@ -36,7 +36,7 @@ function LinkButton(props: LinkButtonProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
-          className="absolute top-0 left-0 z-50 w-1/2 h-full bg-[#1e2021]"
+          className="absolute top-0 left-0 z-50 w-full h-full bg-[#1e2021]"
         />
       )}
     </div>

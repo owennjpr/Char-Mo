@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import CodeBlock from "./CodeBlock";
+import ShowCodeButton from "./components/ShowCodeButton";
+import { useState, useEffect } from "react";
 
 export default function PageWrapper({
   children,
@@ -11,11 +13,32 @@ export default function PageWrapper({
 }) {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const [isThin, setIsThin] = useState<boolean>(false);
+  const [codeOpen, setCodeOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const isThinScreen = window.innerWidth < 768; // Tailwind md breakpoint
+      setIsThin(isThinScreen);
+
+      if (!isThinScreen) {
+        setCodeOpen(true);
+      } else {
+        setCodeOpen(false);
+      }
+    };
+
+    checkScreenSize();
+
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  const shouldShow = !isHomePage && (!isThin || codeOpen);
   return (
-    <div className="w-full h-screen flex flex-row gap-1 overflow-hidden">
-      {/* Left content area - always present */}
-      <div className="w-1/2">
+    <div className="relative w-full h-screen flex flex-row gap-1 overflow-hidden z-0">
+      <div className="w-full md:w-1/2 z-0">
         <motion.div
           key={pathname}
           initial={{ opacity: 0 }}
@@ -27,10 +50,10 @@ export default function PageWrapper({
       </div>
 
       <AnimatePresence>
-        {!isHomePage && (
+        {shouldShow && (
           <motion.div
             key="code-pane"
-            className="p-4 w-1/2 h-full bg-[#0002]"
+            className="absolute right-0 md:relative w-full md:w-1/2 h-full p-4 bg-[#1A1C1D] z-10"
             initial={{ x: "100%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
@@ -44,6 +67,9 @@ export default function PageWrapper({
           </motion.div>
         )}
       </AnimatePresence>
+      {!isHomePage && isThin && (
+        <ShowCodeButton open={codeOpen} setOpen={setCodeOpen} />
+      )}
     </div>
   );
 }
