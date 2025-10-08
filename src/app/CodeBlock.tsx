@@ -1,5 +1,10 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { numberSweepCode, random2StepCode, typedSweepCode } from "./CodeChunks";
+import {
+  hoverShuffleCode,
+  numberSweepCode,
+  random2StepCode,
+  typedSweepCode,
+} from "./CodeChunks";
 
 interface CodeBlockProps {
   contentpath: string;
@@ -16,7 +21,7 @@ function CodeBlock(props: CodeBlockProps) {
         setPageContent(random2StepCode);
         break;
       case "/hover_shuffle":
-        setPageContent(<div>hover shuffle code here</div>);
+        setPageContent(hoverShuffleCode);
         break;
 
       case "/hover_sweep":

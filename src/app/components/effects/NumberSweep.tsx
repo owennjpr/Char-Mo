@@ -11,11 +11,15 @@ const digitPool = "0123456789";
 export default function NumberSweep(props: NumberSweepProps) {
   const { text, delay, cyclesPerDigit } = props;
   const [content, setContent] = useState<string>("");
-  const sweepIndex = useRef<number>(text.length * cyclesPerDigit);
+  const sweepIndex = useRef<number>(0);
 
   useEffect(() => {
+    sweepIndex.current = text.length * cyclesPerDigit;
+
     const interval = setInterval(() => {
-      const index = Math.floor(sweepIndex.current / cyclesPerDigit);
+      const index = Math.floor(
+        sweepIndex.current / Math.max(cyclesPerDigit, 1)
+      );
 
       let digits = "";
 

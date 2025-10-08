@@ -1,17 +1,20 @@
-"use client";
 import React, { useEffect, useState } from "react";
 
 interface ShuffleTextProps {
   text: string;
   fullWords: boolean;
+  delay?: number;
 }
 
 interface TextState {
   display: string;
   original: string;
 }
+
+const charPool = "!@#$%&*()_+=][;/<>?\\œåß©¬æçµXYZ";
+
 export default function ShuffleText(props: ShuffleTextProps) {
-  const { text, fullWords } = props;
+  const { text, fullWords, delay = 50 } = props;
   const [content, setContent] = useState<TextState[]>(
     (fullWords ? text.split(" ") : text.split("")).map((t) => {
       return { display: t, original: t };
@@ -30,16 +33,18 @@ export default function ShuffleText(props: ShuffleTextProps) {
           if (i !== hover) return { ...t, display: t.original };
 
           const len = fullWords ? t.original.length : 1;
-          const randString = Array.from({ length: len }, () =>
-            String.fromCharCode(Math.floor(33 + Math.random() * 93))
-          ).join("");
+          let randString = "";
+          for (let i = 0; i < len; i++) {
+            randString += charPool[Math.floor(Math.random() * charPool.length)];
+          }
+
           return { ...t, display: randString };
         })
       );
-    }, 50);
+    }, delay);
 
     return () => clearInterval(interval);
-  }, [hover, fullWords]);
+  }, [hover, fullWords, delay]);
   return (
     <p className="font-cutive">
       {content.map((t, i) => {
