@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-interface TypedSweepProps {
-  text: string;
+interface TypedSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
   delay: number;
 }
 export default function TypedSweep(props: TypedSweepProps) {
-  const { text, delay } = props;
+  const { children, delay, ...rest } = props;
+  const text = children;
   const [sweepIndex, setSweepIndex] = useState<number>(0);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function TypedSweep(props: TypedSweepProps) {
   }, [text, delay]);
 
   return (
-    <p className="font-cutive">
+    <p {...rest}>
       {text.slice(0, sweepIndex) + (sweepIndex < text.length ? "_" : "")}
     </p>
   );

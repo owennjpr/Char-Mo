@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-interface NumberSweepProps {
-  text: string;
+interface NumberSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
   delay: number;
   cyclesPerDigit: number;
 }
@@ -9,7 +9,8 @@ interface NumberSweepProps {
 const digitPool = "0123456789";
 
 export default function NumberSweep(props: NumberSweepProps) {
-  const { text, delay, cyclesPerDigit } = props;
+  const { children, delay, cyclesPerDigit, ...rest } = props;
+  const text = children;
   const [content, setContent] = useState<string>("");
   const sweepIndex = useRef<number>(0);
 
@@ -39,5 +40,5 @@ export default function NumberSweep(props: NumberSweepProps) {
     return () => clearInterval(interval);
   }, [text, delay, cyclesPerDigit]);
 
-  return <p className="font-cutive">{content}</p>;
+  return <p {...rest}>{content}</p>;
 }

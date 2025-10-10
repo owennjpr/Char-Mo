@@ -58,12 +58,13 @@ export default function Randomized2Step(props: Randomized2StepProps) {
 
 export const typedSweepCode = `import React, { useEffect, useState } from "react";
 
-interface TypedSweepProps {
-  text: string;
+interface TypedSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
   delay: number;
 }
 export default function TypedSweep(props: TypedSweepProps) {
-  const { text, delay } = props;
+  const { children, delay, ...rest } = props;
+  const text = children;
   const [sweepIndex, setSweepIndex] = useState<number>(0);
 
   useEffect(() => {
@@ -83,16 +84,17 @@ export default function TypedSweep(props: TypedSweepProps) {
   }, [text, delay]);
 
   return (
-    <p className="font-cutive">
+    <p {...rest}>
       {text.slice(0, sweepIndex) + (sweepIndex < text.length ? "_" : "")}
     </p>
   );
-}`;
+}
+`;
 
 export const numberSweepCode = `import React, { useEffect, useRef, useState } from "react";
 
-interface NumberSweepProps {
-  text: string;
+interface NumberSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
   delay: number;
   cyclesPerDigit: number;
 }
@@ -100,7 +102,8 @@ interface NumberSweepProps {
 const digitPool = "0123456789";
 
 export default function NumberSweep(props: NumberSweepProps) {
-  const { text, delay, cyclesPerDigit } = props;
+  const { children, delay, cyclesPerDigit, ...rest } = props;
+  const text = children;
   const [content, setContent] = useState<string>("");
   const sweepIndex = useRef<number>(0);
 
@@ -130,7 +133,7 @@ export default function NumberSweep(props: NumberSweepProps) {
     return () => clearInterval(interval);
   }, [text, delay, cyclesPerDigit]);
 
-  return <p className="font-cutive">{content}</p>;
+  return <p {...rest}>{content}</p>;
 }`;
 
 export const hoverShuffleCode = `import React, { useEffect, useState } from "react";
@@ -191,6 +194,73 @@ export default function ShuffleText(props: ShuffleTextProps) {
           >{${'`${t.display}${fullWords ? " " : ""}}`'}</span>
         );
       })}
+    </p>
+  );
+}
+`;
+
+export const hoverSweepCode = `import React, { useEffect, useState } from "react";
+
+interface HoverSweepProps {
+  text: string;
+}
+
+export default function HoverSweep(props: HoverSweepProps) {
+  const { text } = props;
+  const [hover, setHover] = useState<boolean>(false);
+  const [sweepIndex, setSweepIndex] = useState<number>(-1);
+  const [flicker, setFlicker] = useState<boolean>(false);
+  const [flickerState, setFlickerState] = useState<boolean>(true);
+
+  // reset after hover ends
+  useEffect(() => {
+    if (!hover) {
+      setSweepIndex(-1);
+      setFlicker(false);
+      setFlickerState(true);
+    }
+  }, [hover]);
+
+  // sweep
+  useEffect(() => {
+    if (!hover || sweepIndex >= text.length) return;
+
+    const sweepTimer = setInterval(() => {
+      setSweepIndex((s) => s + 1);
+    }, 40);
+
+    return () => clearInterval(sweepTimer);
+  }, [hover, sweepIndex, text.length]);
+
+  // transition to flicker
+  useEffect(() => {
+    if (hover && sweepIndex >= text.length) {
+      setFlicker(true);
+    }
+  }, [hover, sweepIndex, text.length]);
+
+  // flicker
+  useEffect(() => {
+    if (!flicker) return;
+
+    const flickerTimer = setInterval(() => {
+      setFlickerState((s) => !s);
+    }, 400);
+
+    return () => clearInterval(flickerTimer);
+  }, [flicker]);
+
+  return (
+    <p
+      className="font-cutive"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {sweepIndex === -1
+        ? text
+        : text.slice(0, sweepIndex) +
+          (flickerState ? "_" : " ") +
+          text.slice(sweepIndex + 1)}
     </p>
   );
 }

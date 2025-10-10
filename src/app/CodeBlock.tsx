@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import {
   hoverShuffleCode,
+  hoverSweepCode,
   numberSweepCode,
   random2StepCode,
   typedSweepCode,
@@ -25,7 +26,7 @@ function CodeBlock(props: CodeBlockProps) {
         break;
 
       case "/hover_sweep":
-        setPageContent(<div>hover sweep code here</div>);
+        setPageContent(hoverSweepCode);
         break;
       case "/enter_typed_sweep":
         setPageContent(typedSweepCode);

@@ -55,14 +55,16 @@ export default function Home() {
               path="/enter_typed_sweep"
               back={false}
             >
-              <TypedSweep text="Typed Sweep" delay={40} />
+              <TypedSweep delay={40}>Typed Sweep</TypedSweep>
             </LinkButton>
             <LinkButton
               key={"number" + refresh}
               path="/enter_number_sweep"
               back={false}
             >
-              <NumberSweep text="Number Sweep" delay={40} cyclesPerDigit={3} />
+              <NumberSweep delay={40} cyclesPerDigit={3}>
+                Number Sweep
+              </NumberSweep>
             </LinkButton>
           </div>
           <p className="text-xl opacity-50">Hovers</p>
@@ -71,7 +73,7 @@ export default function Home() {
               <ShuffleText text="Word Shuffle" fullWords={true} />
             </LinkButton>
             <LinkButton path="/hover_sweep" back={false}>
-              <HoverSweep text="Command Line Sweep" />
+              <HoverSweep>Command Line Sweep</HoverSweep>
             </LinkButton>
           </div>
           <p className="text-xl opacity-50">Exits</p>
@@ -95,7 +97,7 @@ export default function Home() {
             />
           </svg>
         </a>
-        <TypedSweep text="Created by Owen Prendergast" delay={50} />
+        <TypedSweep delay={50}>Created by Owen Prendergast</TypedSweep>
       </div>
     </div>
   );

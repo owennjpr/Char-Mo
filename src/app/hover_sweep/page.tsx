@@ -5,12 +5,12 @@ import LinkButton from "../components/LinkButton";
 
 function page() {
   return (
-    <div className="p-4">
+    <div className="p-4 font-cutive">
       <LinkButton path="/" back={true}>
         Back to Home
       </LinkButton>
-      <p className="font-cutive text-2xl pt-2">Hover Sweep</p>
-      <HoverSweep text="Lorem ipsum dolor sit amet" />
+      <p className="text-2xl pt-2">Command Line Sweep (40ms)</p>
+      <HoverSweep delay={40}>Lorem ipsum dolor sit amet</HoverSweep>
     </div>
   );
 }

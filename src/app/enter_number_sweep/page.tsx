@@ -8,18 +8,18 @@ function Page() {
   const [delay, setDelay] = useState<number>(80);
   const [cpd, setCpd] = useState<number>(2);
   return (
-    <div className="p-4">
+    <div className="p-4 font-cutive">
       <LinkButton path="/" back={true}>
         Back to Home
       </LinkButton>
-      <p className="font-cutive text-2xl pt-2">
-        Number Sweep (50ms, 4 cycles per digit)
-      </p>
-      <NumberSweep text="123456789" delay={50} cyclesPerDigit={4} />
+      <p className="text-2xl pt-2">Number Sweep (50ms, 4 cycles per digit)</p>
+      <NumberSweep delay={50} cyclesPerDigit={4}>
+        123456789
+      </NumberSweep>
       <div className="flex items-center">
-        <p className="font-cutive text-2xl pt-2">Number Sweep (</p>
+        <p className="text-2xl pt-2">Number Sweep (</p>
         <NumberInput state={delay} setState={setDelay} />
-        <p className="font-cutive text-2xl pt-2 pr-2">ms, </p>
+        <p className="text-2xl pt-2 pr-2">ms, </p>
         <NumberInput
           state={cpd}
           setState={setCpd}
@@ -28,13 +28,11 @@ function Page() {
           digits={2}
         />
 
-        <p className="font-cutive text-2xl pt-2 pl-2">cycles per digit)</p>
+        <p className="text-2xl pt-2 pl-2">cycles per digit)</p>
       </div>
-      <NumberSweep
-        text="12345678901234567890"
-        delay={delay}
-        cyclesPerDigit={cpd}
-      />
+      <NumberSweep delay={delay} cyclesPerDigit={cpd}>
+        12345678901234567890
+      </NumberSweep>
     </div>
   );
 }

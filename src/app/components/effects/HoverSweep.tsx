@@ -1,18 +1,19 @@
-"use client";
 import React, { useEffect, useState } from "react";
 
-interface HoverSweepProps {
-  text: string;
+interface HoverSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
+  delay?: number;
 }
 
 export default function HoverSweep(props: HoverSweepProps) {
-  const { text } = props;
+  const { children, delay = 40, ...rest } = props;
+  const text = children;
   const [hover, setHover] = useState<boolean>(false);
   const [sweepIndex, setSweepIndex] = useState<number>(-1);
   const [flicker, setFlicker] = useState<boolean>(false);
   const [flickerState, setFlickerState] = useState<boolean>(true);
 
-  // Reset after hover ends
+  // reset after hover ends
   useEffect(() => {
     if (!hover) {
       setSweepIndex(-1);
@@ -21,40 +22,40 @@ export default function HoverSweep(props: HoverSweepProps) {
     }
   }, [hover]);
 
-  // Sweep effect
+  // sweep
   useEffect(() => {
     if (!hover || sweepIndex >= text.length) return;
 
     const sweepTimer = setInterval(() => {
       setSweepIndex((s) => s + 1);
-    }, 40);
+    }, delay);
 
     return () => clearInterval(sweepTimer);
-  }, [hover, sweepIndex, text.length]);
+  }, [delay, hover, sweepIndex, text.length]);
 
-  // Transition to flicker
+  // transition to flicker
   useEffect(() => {
     if (hover && sweepIndex >= text.length) {
       setFlicker(true);
     }
   }, [hover, sweepIndex, text.length]);
 
-  // Flicker effect
+  // flicker
   useEffect(() => {
     if (!flicker) return;
 
     const flickerTimer = setInterval(() => {
       setFlickerState((s) => !s);
-    }, 400);
+    }, delay * 10);
 
     return () => clearInterval(flickerTimer);
-  }, [flicker]);
+  }, [flicker, delay]);
 
   return (
     <p
-      className="font-cutive"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      {...rest}
     >
       {sweepIndex === -1
         ? text
