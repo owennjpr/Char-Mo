@@ -15,7 +15,7 @@ function NumberInput(props: NumberInputProps) {
       type="text"
       inputMode="numeric"
       pattern={`${"\\d"}{1,${digits}}$`}
-      maxLength={3}
+      maxLength={digits}
       value={state}
       onChange={(e) => {
         if (!e.target.validity.patternMismatch) {

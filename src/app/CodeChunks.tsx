@@ -1,8 +1,9 @@
 export const random2StepCode = `import React, { useEffect, useState } from "react";
 
-interface Randomized2StepProps {
-  text: string;
-  order?: number;
+interface Randomized2StepProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
+  maxDelay?: number;
 }
 
 interface LetterState {
@@ -11,12 +12,11 @@ interface LetterState {
 }
 
 const charPool = ["-", "-", ".", "_"];
-const maxDelay = 700;
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Randomized2Step(props: Randomized2StepProps) {
-  const { text, order = 0 } = props;
-
+  const { children, maxDelay = 1000, ...rest } = props;
+  const text = children;
   const [letters, setLetters] = useState<LetterState[]>(
     text.split("").map((char) => {
       return { display: "", target: char };
@@ -32,20 +32,21 @@ export default function Randomized2Step(props: Randomized2StepProps) {
   useEffect(() => {
     text.split("").forEach((c, i) => {
       (async () => {
-        await wait(Math.random() * maxDelay + order * 200);
+        updateCharacter(i, "");
+        await wait(Math.random() * (maxDelay / 2));
         updateCharacter(
           i,
           charPool[Math.floor(Math.random() * charPool.length)]
         );
 
-        await wait(Math.random() * maxDelay);
+        await wait(Math.random() * (maxDelay / 2));
         updateCharacter(i, c);
       })();
     });
-  }, [text, order]);
+  }, [text, maxDelay]);
 
   return (
-    <p className="font-cutive">
+    <p {...rest}>
       {letters.map((l, i) => (
         <span key={i} className={${'`${l.display !== l.target && "opacity-40"}`'}}>
           {l.display}
@@ -138,8 +139,8 @@ export default function NumberSweep(props: NumberSweepProps) {
 
 export const hoverShuffleCode = `import React, { useEffect, useState } from "react";
 
-interface ShuffleTextProps {
-  text: string;
+interface ShuffleTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
   fullWords: boolean;
   delay?: number;
 }
@@ -152,7 +153,8 @@ interface TextState {
 const charPool = "!@#$%&*()_+=][;/<>?\\œåß©¬æçµXYZ";
 
 export default function ShuffleText(props: ShuffleTextProps) {
-  const { text, fullWords, delay = 50 } = props;
+  const { children, fullWords, delay = 50, ...rest } = props;
+  const text = children;
   const [content, setContent] = useState<TextState[]>(
     (fullWords ? text.split(" ") : text.split("")).map((t) => {
       return { display: t, original: t };
@@ -184,14 +186,14 @@ export default function ShuffleText(props: ShuffleTextProps) {
     return () => clearInterval(interval);
   }, [hover, fullWords, delay]);
   return (
-    <p className="font-cutive">
+    <p {...rest}>
       {content.map((t, i) => {
         return (
           <span
             key={i}
             onMouseEnter={() => setHover(i)}
             onMouseLeave={() => setHover(-1)}
-          >{${'`${t.display}${fullWords ? " " : ""}}`'}</span>
+          >{${'`${t.display}${fullWords ? " " : ""}`'}}</span>
         );
       })}
     </p>
@@ -201,12 +203,14 @@ export default function ShuffleText(props: ShuffleTextProps) {
 
 export const hoverSweepCode = `import React, { useEffect, useState } from "react";
 
-interface HoverSweepProps {
-  text: string;
+interface HoverSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
+  delay?: number;
 }
 
 export default function HoverSweep(props: HoverSweepProps) {
-  const { text } = props;
+  const { children, delay = 40, ...rest } = props;
+  const text = children;
   const [hover, setHover] = useState<boolean>(false);
   const [sweepIndex, setSweepIndex] = useState<number>(-1);
   const [flicker, setFlicker] = useState<boolean>(false);
@@ -227,10 +231,10 @@ export default function HoverSweep(props: HoverSweepProps) {
 
     const sweepTimer = setInterval(() => {
       setSweepIndex((s) => s + 1);
-    }, 40);
+    }, delay);
 
     return () => clearInterval(sweepTimer);
-  }, [hover, sweepIndex, text.length]);
+  }, [delay, hover, sweepIndex, text.length]);
 
   // transition to flicker
   useEffect(() => {
@@ -245,16 +249,16 @@ export default function HoverSweep(props: HoverSweepProps) {
 
     const flickerTimer = setInterval(() => {
       setFlickerState((s) => !s);
-    }, 400);
+    }, delay * 10);
 
     return () => clearInterval(flickerTimer);
-  }, [flicker]);
+  }, [flicker, delay]);
 
   return (
     <p
-      className="font-cutive"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      {...rest}
     >
       {sweepIndex === -1
         ? text

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-interface ShuffleTextProps {
-  text: string;
+interface ShuffleTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
   fullWords: boolean;
   delay?: number;
 }
@@ -14,7 +14,8 @@ interface TextState {
 const charPool = "!@#$%&*()_+=][;/<>?\\œåß©¬æçµXYZ";
 
 export default function ShuffleText(props: ShuffleTextProps) {
-  const { text, fullWords, delay = 50 } = props;
+  const { children, fullWords, delay = 50, ...rest } = props;
+  const text = children;
   const [content, setContent] = useState<TextState[]>(
     (fullWords ? text.split(" ") : text.split("")).map((t) => {
       return { display: t, original: t };
@@ -46,7 +47,7 @@ export default function ShuffleText(props: ShuffleTextProps) {
     return () => clearInterval(interval);
   }, [hover, fullWords, delay]);
   return (
-    <p className="font-cutive">
+    <p {...rest}>
       {content.map((t, i) => {
         return (
           <span

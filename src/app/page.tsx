@@ -48,7 +48,7 @@ export default function Home() {
               path="/enter_random"
               back={false}
             >
-              <Randomized2Step text="2 Step Randomized" order={0} />
+              <Randomized2Step>2 Step Randomized</Randomized2Step>
             </LinkButton>
             <LinkButton
               key={"typed" + refresh}
@@ -70,7 +70,7 @@ export default function Home() {
           <p className="text-xl opacity-50">Hovers</p>
           <div className="pl-4">
             <LinkButton path="/hover_shuffle" back={false}>
-              <ShuffleText text="Word Shuffle" fullWords={true} />
+              <ShuffleText fullWords={true}>Word Shuffle</ShuffleText>
             </LinkButton>
             <LinkButton path="/hover_sweep" back={false}>
               <HoverSweep>Command Line Sweep</HoverSweep>

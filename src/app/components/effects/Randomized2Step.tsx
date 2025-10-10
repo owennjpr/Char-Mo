@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-interface Randomized2StepProps {
-  text: string;
-  order?: number;
+interface Randomized2StepProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: string;
+  maxDelay?: number;
 }
 
 interface LetterState {
@@ -11,12 +12,11 @@ interface LetterState {
 }
 
 const charPool = ["-", "-", ".", "_"];
-const maxDelay = 700;
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Randomized2Step(props: Randomized2StepProps) {
-  const { text, order = 0 } = props;
-
+  const { children, maxDelay = 1000, ...rest } = props;
+  const text = children;
   const [letters, setLetters] = useState<LetterState[]>(
     text.split("").map((char) => {
       return { display: "", target: char };
@@ -32,20 +32,21 @@ export default function Randomized2Step(props: Randomized2StepProps) {
   useEffect(() => {
     text.split("").forEach((c, i) => {
       (async () => {
-        await wait(Math.random() * maxDelay + order * 200);
+        updateCharacter(i, "");
+        await wait(Math.random() * (maxDelay / 2));
         updateCharacter(
           i,
           charPool[Math.floor(Math.random() * charPool.length)]
         );
 
-        await wait(Math.random() * maxDelay);
+        await wait(Math.random() * (maxDelay / 2));
         updateCharacter(i, c);
       })();
     });
-  }, [text, order]);
+  }, [text, maxDelay]);
 
   return (
-    <p className="font-cutive">
+    <p {...rest}>
       {letters.map((l, i) => (
         <span key={i} className={`${l.display !== l.target && "opacity-40"}`}>
           {l.display}
