@@ -22,13 +22,23 @@ export type Enter =
       };
     };
 
-export type HoverType = "shuffle" | "typed sweep";
-
-export type HoverOptions = {
-  rate?: number;
-};
-
-export type Hover = { type: HoverType; options?: HoverOptions };
+export type Hover =
+  | {
+      type: "cursor sweep";
+      options?: {
+        rate?: number;
+        cursor?: string;
+        idle?: boolean;
+        idleRate?: number;
+      };
+    }
+  | {
+      type: "word shuffle";
+      options?: {
+        rate?: number;
+        characterPool?: string;
+      };
+    };
 
 export type LetterState = {
   char: string;
@@ -40,9 +50,11 @@ export type LetterState = {
 export type EffectFn<T extends object> = (
   text: LetterState[],
   setText: (l: LetterState[]) => void,
-  options?: T
+  options?: T,
+  hover?: () => boolean
 ) => Promise<void>;
 
+// Enter Functions
 export type TypedSweepFn = EffectFn<{ rate?: number; cursor?: string }>;
 export type NumberSweepFn = EffectFn<{
   rate?: number;
@@ -51,5 +63,18 @@ export type NumberSweepFn = EffectFn<{
 }>;
 export type RandomizedFn = EffectFn<{
   maxDelay?: number;
+  characterPool?: string;
+}>;
+
+// Hover Functions
+export type CursorSweepFn = EffectFn<{
+  rate?: number;
+  cursor?: string;
+  idle?: boolean;
+  idleRate?: number;
+}>;
+
+export type WordShuffleFn = EffectFn<{
+  rate?: number;
   characterPool?: string;
 }>;

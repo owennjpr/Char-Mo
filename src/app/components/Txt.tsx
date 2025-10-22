@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Enter, Hover, LetterState } from "../lib/types";
-import { enterEffects } from "../lib/enters";
+import { enterEffects } from "../lib/enterMap";
+import { hoverEffects } from "../lib/hoverMap";
 
 interface DTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: string;
@@ -16,6 +17,8 @@ function Txt(props: DTextProps) {
   );
   const [entered, setEntered] = useState<boolean>(false);
   const [hovering, setHovering] = useState<boolean>(false);
+  const hoveringRef = useRef<boolean>(false);
+  hoveringRef.current = hovering;
 
   useEffect(() => {
     let active = true;
@@ -40,16 +43,41 @@ function Txt(props: DTextProps) {
   }, [children, enter]);
 
   useEffect(() => {
-    if (!hover || !entered || !hovering) return;
-  }, [hovering, entered, hover]);
+    if (!hover || !entered) return;
+
+    let active = true;
+
+    const initialLetters = children
+      .split("")
+      .map((c) => ({ char: "", target: c }));
+
+    (async () => {
+      if (hoverEffects[hover.type]) {
+        await hoverEffects[hover.type](
+          initialLetters,
+          (t) => active && setText(t),
+          hover.options,
+          () => {
+            return hoveringRef.current;
+          }
+        );
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [children, hovering, entered, hover]);
   return (
-    <p
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      {...rest}
-    >
+    <p {...rest}>
       {text.map((l, i) => (
-        <span key={i} className={l.className} style={l.style}>
+        <span
+          key={i}
+          className={l.className}
+          style={l.style}
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
+        >
           {l.char}
         </span>
       ))}

@@ -7,7 +7,11 @@ function page() {
     <div className="font-cutive p-4">
       <Txt
         enter={{
-          type: "number sweep",
+          type: "randomized",
+          options: {},
+        }}
+        hover={{
+          type: "cursor sweep",
         }}
       >
         oh hello i am implementing a text library rn
