@@ -20,6 +20,17 @@ function Txt(props: DTextProps) {
   const hoveringRef = useRef<boolean>(false);
   hoveringRef.current = hovering;
 
+  const enterRef = useRef<Enter | null>(enter);
+  const hoverRef = useRef<Hover | null>(hover);
+
+  useEffect(() => {
+    enterRef.current = enter;
+  }, [enter]);
+
+  useEffect(() => {
+    hoverRef.current = hover;
+  }, [hover]);
+
   useEffect(() => {
     let active = true;
 
@@ -28,11 +39,11 @@ function Txt(props: DTextProps) {
       .map((c) => ({ char: "", target: c }));
 
     (async () => {
-      if (enter && enterEffects[enter.type]) {
-        await enterEffects[enter.type](
+      if (enterRef.current && enterEffects[enterRef.current.type]) {
+        await enterEffects[enterRef.current.type](
           initialLetters,
           (t) => active && setText(t),
-          enter.options
+          enterRef.current.options
         );
       }
       if (active) setEntered(true);
@@ -40,10 +51,10 @@ function Txt(props: DTextProps) {
     return () => {
       active = false;
     };
-  }, [children, enter]);
+  }, [children]);
 
   useEffect(() => {
-    if (!hover || !entered) return;
+    if (!hoverRef.current || !entered) return;
 
     let active = true;
 
@@ -52,11 +63,11 @@ function Txt(props: DTextProps) {
       .map((c) => ({ char: "", target: c }));
 
     (async () => {
-      if (hoverEffects[hover.type]) {
-        await hoverEffects[hover.type](
+      if (hoverRef.current && hoverEffects[hoverRef.current.type]) {
+        await hoverEffects[hoverRef.current.type](
           initialLetters,
           (t) => active && setText(t),
-          hover.options,
+          hoverRef.current.options,
           () => {
             return hoveringRef.current;
           }
@@ -67,7 +78,7 @@ function Txt(props: DTextProps) {
     return () => {
       active = false;
     };
-  }, [children, hovering, entered, hover]);
+  }, [children, hovering, entered]);
   return (
     <p {...rest}>
       {text.map((l, i) => (
