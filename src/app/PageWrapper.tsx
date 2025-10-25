@@ -35,10 +35,10 @@ export default function PageWrapper({
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const shouldShow = !isHomePage && (!isThin || codeOpen);
+  const shouldShow = pathname.startsWith("/gallery/") && (!isThin || codeOpen);
   return (
-    <div className="relative w-full h-screen flex flex-row gap-1 overflow-hidden z-0">
-      <div className="w-full md:w-1/2 z-0">
+    <div className="relative w-full h-screen flex flex-row gap-1 z-0">
+      <div className={"w-full  z-0 " + (shouldShow && "md:w-1/2")}>
         <motion.div
           key={pathname}
           initial={{ opacity: 0 }}

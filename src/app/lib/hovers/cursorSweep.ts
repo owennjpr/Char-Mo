@@ -33,7 +33,6 @@ export const cursorSweep: CursorSweepFn = async (
   let flickerState = false;
 
   const updateText = () => {
-    console.log("updating", hover ? hover() : "no hover function");
     const updated = text.map((letter, index) => {
       if (index < sweepIndex) {
         return { ...letter, char: letter.target };

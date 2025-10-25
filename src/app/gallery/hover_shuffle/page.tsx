@@ -1,14 +1,12 @@
 "use client";
 import React from "react";
-import ShuffleText from "../components/effects/ShuffleText";
-import LinkButton from "../components/LinkButton";
+import ShuffleText from "@/components/effects/ShuffleText";
+import LinkButton from "@/components/LinkButton";
 
 function HoverShuffle() {
   return (
     <div className="font-cutive p-4">
-      <LinkButton path="/" back={true}>
-        Back to Home
-      </LinkButton>
+      <LinkButton path="/gallery">Back</LinkButton>
       <p className="text-2xl pt-2">Individual Characters</p>
       <ShuffleText fullWords={false}>Lorem ipsum dolor sit amet</ShuffleText>
       <p className="text-2xl pt-2">Full Words</p>

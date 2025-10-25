@@ -1,16 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import LinkButton from "../components/LinkButton";
-import TypedSweep from "../components/effects/TypedSweep";
-import NumberInput from "../components/NumberInput";
+import LinkButton from "@/components/LinkButton";
+import TypedSweep from "@/components/effects/TypedSweep";
+import NumberInput from "@/components/NumberInput";
 
 function Page() {
   const [delay, setDelay] = useState<number>(10);
   return (
     <div className="p-4">
-      <LinkButton path="/" back={true}>
-        Back to Home
-      </LinkButton>
+      <LinkButton path="/gallery">Back</LinkButton>
       <p className="font-cutive text-2xl pt-2">Typed Sweep (40ms)</p>
       <TypedSweep delay={40} className="font-cutive">
         Lorem ipsum dolor sit amet

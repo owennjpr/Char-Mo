@@ -1,16 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import Randomized2Step from "../components/effects/Randomized2Step";
-import LinkButton from "../components/LinkButton";
-import NumberInput from "../components/NumberInput";
+import Randomized2Step from "@/components/effects/Randomized2Step";
+import LinkButton from "@/components/LinkButton";
+import NumberInput from "@/components/NumberInput";
 function RandomEnter() {
   const [delay, setDelay] = useState<number>(1000);
 
   return (
     <div className="p-4 font-cutive">
-      <LinkButton path="/" back={true}>
-        Back to Home
-      </LinkButton>
+      <LinkButton path="/gallery">Back</LinkButton>
       <div className="pb-6">
         <p className="text-2xl pt-2">Individual Lines</p>
         <Randomized2Step>

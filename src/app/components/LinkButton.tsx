@@ -6,11 +6,10 @@ import { motion } from "motion/react";
 
 interface LinkButtonProps {
   children?: ReactNode;
-  back: boolean;
   path?: string;
 }
 function LinkButton(props: LinkButtonProps) {
-  const { children, back, path = "/" } = props;
+  const { children, path = "/" } = props;
   const router = useRouter();
   const wait = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -20,7 +19,7 @@ function LinkButton(props: LinkButtonProps) {
   const redirect = async () => {
     setFade(true);
     await wait(200);
-    if (!back) {
+    if (path !== "/") {
       router.push(path);
     } else {
       router.replace("/");

@@ -38,6 +38,15 @@ export type Hover =
         rate?: number;
         characterPool?: string;
       };
+    }
+  | {
+      type: "twinkle";
+      options?: {
+        rate?: number;
+        characterPool?: string;
+        maxNum?: number;
+        opacity?: number;
+      };
     };
 
 export type LetterState = {
@@ -77,4 +86,11 @@ export type CursorSweepFn = EffectFn<{
 export type WordShuffleFn = EffectFn<{
   rate?: number;
   characterPool?: string;
+}>;
+
+export type TwinkleFn = EffectFn<{
+  rate?: number;
+  maxNum?: number;
+  characterPool?: string;
+  opacity?: number;
 }>;

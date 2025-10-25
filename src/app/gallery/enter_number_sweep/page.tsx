@@ -1,17 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import LinkButton from "../components/LinkButton";
-import NumberSweep from "../components/effects/NumberSweep";
-import NumberInput from "../components/NumberInput";
+import LinkButton from "@/components/LinkButton";
+import NumberSweep from "@/components/effects/NumberSweep";
+import NumberInput from "@/components/NumberInput";
 
 function Page() {
   const [delay, setDelay] = useState<number>(80);
   const [cpd, setCpd] = useState<number>(2);
   return (
     <div className="p-4 font-cutive">
-      <LinkButton path="/" back={true}>
-        Back to Home
-      </LinkButton>
+      <LinkButton path="/gallery">Back</LinkButton>
       <p className="text-2xl pt-2">Number Sweep (50ms, 4 cycles per digit)</p>
       <NumberSweep delay={50} cyclesPerDigit={4}>
         123456789

@@ -18,20 +18,19 @@ function CodeBlock(props: CodeBlockProps) {
     console.log(contentpath);
 
     switch (contentpath) {
-      case "/enter_random":
+      case "/gallery/enter_random":
         setPageContent(random2StepCode);
         break;
-      case "/hover_shuffle":
+      case "/gallery/hover_shuffle":
         setPageContent(hoverShuffleCode);
         break;
-
-      case "/hover_sweep":
+      case "/gallery/hover_sweep":
         setPageContent(hoverSweepCode);
         break;
-      case "/enter_typed_sweep":
+      case "/gallery/enter_typed_sweep":
         setPageContent(typedSweepCode);
         break;
-      case "/enter_number_sweep":
+      case "/gallery/enter_number_sweep":
         setPageContent(numberSweepCode);
         break;
       default:
