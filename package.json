@@ -1,0 +1,8 @@
+{
+  "name": "char-mo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "website"
+  ]
+}

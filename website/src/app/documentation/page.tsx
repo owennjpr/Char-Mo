@@ -1,7 +1,7 @@
 "use client";
 import LinkButton from "@/components/LinkButton";
 import RefreshButton from "@/components/RefreshButton";
-import Txt from "@/components/Txt";
+import { Txt } from "@char-mo/react";
 import React, { useState } from "react";
 
 function Documentation() {
@@ -52,7 +52,7 @@ function Documentation() {
             <span className="text-xs">no spans yet sorry :(</span>
           </p>
           <p className="bg-[#0003] p-4 text-base whitespace-pre-wrap overflow-x-scroll">
-            {`import { Txt } from ...
+            {`import { Txt } from "@char-mo/react";
 
 <Txt enter={{ type: "typed sweep" }}>
   Hello World!

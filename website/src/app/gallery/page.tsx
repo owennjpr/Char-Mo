@@ -5,7 +5,7 @@ import ShuffleText from "@/components/effects/ShuffleText";
 import HoverSweep from "@/components/effects/HoverSweep";
 import TypedSweep from "@/components/effects/TypedSweep";
 import NumberSweep from "@/components/effects/NumberSweep";
-import Txt from "@/components/Txt";
+import { Txt } from "@char-mo/react";
 import LinkButton from "@/components/LinkButton";
 import RefreshButton from "@/components/RefreshButton";
 

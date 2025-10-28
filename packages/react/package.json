@@ -1,0 +1,36 @@
+{
+  "name": "@char-mo/react",
+  "version": "0.1.1",
+  "author": {
+    "name": "Owen Prendergast",
+    "email": "owenprendergast8@gmail.com"
+  },
+  "keywords": [
+    "react",
+    "ascii",
+    "animation",
+    "text",
+    "ascii art"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "description": "Char-Mo React: an ASCII character animation library for react",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
+  }
+}

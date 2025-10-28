@@ -1,0 +1,79 @@
+import { CursorSweepFn, LetterState } from "../../types";
+
+export const cursorSweep: CursorSweepFn = async (
+  text: LetterState[],
+  setText: (t: LetterState[]) => void,
+  options?: {
+    rate?: number;
+    cursor?: string;
+    idle?: boolean;
+    idleRate?: number;
+  },
+  hover?: () => boolean
+) => {
+  // Reset to original state when hover is false
+  if (!hover || !hover()) {
+    const resetText = text.map((letter) => ({
+      ...letter,
+      char: letter.target,
+    }));
+    setText([...resetText]);
+    return;
+  }
+
+  const {
+    rate = 30,
+    cursor = "_",
+    idle = true,
+    idleRate = 300,
+  } = options || {};
+
+  let sweepIndex = 0;
+  let flicker = false;
+  let flickerState = false;
+
+  const updateText = () => {
+    const updated = text.map((letter, index) => {
+      if (index < sweepIndex) {
+        return { ...letter, char: letter.target };
+      } else if (index === sweepIndex && !flicker) {
+        return { ...letter, char: cursor };
+      } else if (index === sweepIndex && flicker) {
+        return { ...letter, char: flickerState ? cursor : " " };
+      } else {
+        return { ...letter, char: letter.target };
+      }
+    });
+
+    // add extra cursor elem
+    if (sweepIndex >= text.length && flicker) {
+      updated.push({
+        char: flickerState ? cursor : " ",
+        target: "",
+      });
+    }
+
+    setText([...updated]);
+  };
+
+  updateText();
+
+  // sweep phase
+  while (sweepIndex < text.length && hover()) {
+    await new Promise((resolve) => setTimeout(resolve, rate));
+    sweepIndex++;
+    updateText();
+  }
+
+  // transition to flicker phase (if idle selected)
+  if (sweepIndex >= text.length && idle && hover()) {
+    flicker = true;
+
+    // flicker phase
+    while (hover()) {
+      await new Promise((resolve) => setTimeout(resolve, idleRate));
+      flickerState = !flickerState;
+      updateText();
+    }
+  }
+};
