@@ -8,7 +8,7 @@ export default function Home() {
         <Txt
           enter={{
             type: "randomized",
-            options: { maxDelay: 1000 },
+            options: { maxDelay: 3000 },
           }}
           hover={{
             type: "twinkle",
@@ -18,31 +18,35 @@ export default function Home() {
               characterPool: "*^",
             },
           }}
-          className="text-[9px]/2 sm:text-sm/3.5 sm:w-[580px] whitespace-pre-wrap"
-        >{` _____                              _        _______        _   
-|  __ \\                            (_)      |__   __|      | |  
-| |  | |_   _ _ __   __ _ _ __ ___  _  ___     | | _____  _| |_ 
-| |  | | | | | '_ \\ / _${"`"} | '_ ${"`"} _ \\| |/ __|    | |/ _ \\ \\/ / __|
-| |__| | |_| | | | | (_| | | | | | | | (__     | |  __/>  <| |_ 
-|_____/ \\__, |_| |_|\\__,_|_| |_| |_|_|\\___|    |_|\\___/_/\\_\\__| 
-          __/ |                                                   
-         |___/                                                    `}</Txt>
+          className="text-[9px]/2 md:text-sm/3.5 md:w-[724px] h-[104px] md:h-[182px] whitespace-pre-wrap tracking-tighter"
+        >{`       _..._                                                                     .-'''-.     
+    .-'_..._''.                                                                 '   _    \\   
+  .' .'      '.\\  .                                           __  __   ___    /   /${"`"} '.   \\  
+ / .'           .'|                                          |  |/  ${"`"}.'   ${"`"}. .   |     \\  '  
+. '            <  |                   .-,.--.                |   .-.  .-.   '|   '      |  ' 
+| |             | |             __    |  .-. | ,.----------. |  |  |  |  |  |\\    \\     / /  
+| |             | | .'''-.   .:--.'.  | |  | |//            \\|  |  |  |  |  | ${"`"}.   ${"`"} ..' /   
+. '             | |/.'''. \\ / |   \\ | | |  | |\\\\            /|  |  |  |  |  |    '-...-'${"`"}    
+ \\ '.          .|  /    | | ${"`"}" __ | | | |  '-  ${"`"}'----------' |  |  |  |  |  |                
+  '. ${"`"}._____.-'/| |     | |  .'.''| | | |                    |__|  |__|  |__|                
+    ${"`"}-.______ / | |     | | / /   | |_| |                                                    
+             ${"`"}  | '.    | '.\\ \\._,\\ '/|_|                                                    
+                '---'   '---'${"`"}--'  ${"`"}"                                                        `}</Txt>
 
-        <div className="w-1/2">
+        <div className="flex flex-col items-center">
           <Txt
-            enter={{ type: "randomized", options: { maxDelay: 1000 } }}
-            className="text-base/3.5 py-4 w-full"
+            // enter={{ type: "randomized", options: { maxDelay: 1000 } }}
+            className="text-base/3.5 py-4 w-5/6 max-w-3xl"
           >
-            A collection of text/letter replacement based animations built with
-            React and TypeScript and coveniently bundled into an npm package.
-            The site includes documentation for the package as well as examples
-            and code snippets for specific effects if there is just one you want
-            to implement yourself.
+            A collection of ASCII character based text animations built with
+            React and TypeScript, bundled into an npm package. This site
+            includes documentation for the package as well as examples and code
+            snippets for individual effects.
           </Txt>
           <div className="w-full flex flex-row justify-around font-cutive">
             <LinkButton path={"documentation"}>
               <Txt
-                enter={{ type: "randomized", options: { maxDelay: 1000 } }}
+                // enter={{ type: "randomized", options: { maxDelay: 1000 } }}
                 className="text-xl/4 whitespace-pre-wrap w-[240]"
               >
                 {`+---------------+
@@ -52,7 +56,7 @@ export default function Home() {
             </LinkButton>
             <LinkButton path={"gallery"}>
               <Txt
-                enter={{ type: "randomized", options: { maxDelay: 1000 } }}
+                // enter={{ type: "randomized", options: { maxDelay: 1000 } }}
                 className="text-xl/4 whitespace-pre-wrap w-[240]"
               >
                 {`+----------------+

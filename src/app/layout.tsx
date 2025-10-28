@@ -20,8 +20,8 @@ const cutiveMono = Cutive_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dynamic Text",
-  description: "some cool text based frontend stuff",
+  title: "Char-Mo",
+  description: "am npm package for ASCII character based text animation",
 };
 
 export default function RootLayout({
