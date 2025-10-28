@@ -10,7 +10,7 @@ interface TxtProps extends React.HTMLAttributes<HTMLParagraphElement> {
 }
 
 export function Txt(props: TxtProps) {
-  const { children, enter, hover, ...rest } = props;
+  const { children, enter = null, hover = null, ...rest } = props;
 
   const [text, setText] = useState<LetterState[]>(
     children.split("").map((c) => ({ char: c, target: c }))

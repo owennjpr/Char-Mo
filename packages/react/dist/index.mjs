@@ -171,7 +171,7 @@ var hoverEffects = {
 // src/components/Txt.tsx
 import { jsx } from "react/jsx-runtime";
 function Txt(props) {
-  const { children, enter, hover, ...rest } = props;
+  const { children, enter = null, hover = null, ...rest } = props;
   const [text, setText] = useState(
     children.split("").map((c) => ({ char: c, target: c }))
   );
