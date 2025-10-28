@@ -1,3 +1,3 @@
-import { LetterState, WordShuffleFn } from "../types";
+import { WordShuffleFn } from "../types";
 
 export const wordShuffle: WordShuffleFn = async () => {};
