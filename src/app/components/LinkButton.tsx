@@ -7,9 +7,10 @@ import { motion } from "motion/react";
 interface LinkButtonProps {
   children?: ReactNode;
   path?: string;
+  altClasses?: string;
 }
 function LinkButton(props: LinkButtonProps) {
-  const { children, path = "/" } = props;
+  const { children, path = "/", altClasses = "" } = props;
   const router = useRouter();
   const wait = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
@@ -27,7 +28,10 @@ function LinkButton(props: LinkButtonProps) {
   };
   return (
     <div>
-      <div className="cursor-pointer font-cutive h-6" onClick={redirect}>
+      <div
+        className={"cursor-pointer font-cutive " + altClasses}
+        onClick={redirect}
+      >
         {children}
       </div>
       {fade && (

@@ -43,7 +43,7 @@ export default function Home() {
             <LinkButton path={"documentation"}>
               <Txt
                 enter={{ type: "randomized", options: { maxDelay: 1000 } }}
-                className="text-xl/4 whitespace-pre-wrap"
+                className="text-xl/4 whitespace-pre-wrap w-[240]"
               >
                 {`+---------------+
 | documentation |
@@ -53,7 +53,7 @@ export default function Home() {
             <LinkButton path={"gallery"}>
               <Txt
                 enter={{ type: "randomized", options: { maxDelay: 1000 } }}
-                className="text-xl/4 whitespace-pre-wrap"
+                className="text-xl/4 whitespace-pre-wrap w-[240]"
               >
                 {`+----------------+
 | effect gallery |
