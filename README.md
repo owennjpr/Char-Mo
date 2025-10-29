@@ -1,8 +1,8 @@
-[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v)](https://nodei.co/npm/@char-mo/react/) ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/char-mo) ![License](https://img.shields.io/badge/license-MIT-blue)
+[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v)](https://nodei.co/npm/@char-mo/react/) ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/char-motion) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 # Char Motion
 
-Char(acter) Motion is an [npm package](https://www.npmjs.com/package/@char-mo/react) containing a collection of ASCII character based text animations/effects for use in React applications. To read the docs, see examples, and get more information, check out the [website](https://char-mo.vercel.app/)
+Char(acter) Motion is an [npm package](https://www.npmjs.com/package/@char-mo/react) containing a collection of ASCII character based text animations/effects for use in React applications. To read the docs, see examples, and get more information, check out the [website](https://char-motion.vercel.app/)
 
 ## Installation
 
@@ -16,7 +16,7 @@ Char(acter) Motion is an [npm package](https://www.npmjs.com/package/@char-mo/re
             Hello World!
         </Txt>
 
-more examples [here](https://char-mo.vercel.app/)
+more examples [here](https://char-motion.vercel.app/)
 
 ## Current Effects
 
