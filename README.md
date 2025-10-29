@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v)](https://nodei.co/npm/@char-mo/react/) ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/char-motion) ![License](https://img.shields.io/badge/license-MIT-blue)
+[![NPM](https://nodei.co/npm/@char-motion/react.svg?style=flat&data=n,v)](https://nodei.co/npm/@char-motion/react/) ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/char-motion) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 # Char Motion
 
