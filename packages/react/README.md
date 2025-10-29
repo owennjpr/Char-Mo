@@ -1,7 +1,7 @@
 # Char Motion
 
 Char(acter) Motion is a collection of ASCII character based text animations/effects for use in React applications.
-To read the docs, see examples, and get more information, check out the [website](https://char-mo.vercel.app/)
+To read the docs, see examples, and get more information, check out the [website](https://char-motion.vercel.app/)
 
 ## Installation
 
@@ -15,11 +15,11 @@ To read the docs, see examples, and get more information, check out the [website
             Hello World!
         </Txt>
 
-more examples [here](https://char-mo.vercel.app/)
+more examples [here](https://char-motion.vercel.app/)
 
 ## Current Effects
 
-Effects are split into different categories based on when they trigger.
+Effects are split into different categories based on when they trigger. This package is relatively new so there aren't too many effects yet.
 
 ### Enters
 
@@ -35,3 +35,5 @@ Effects that trigger when the Txt object is hovered over
 
 - cursor sweep: a cursor character moves left to right through the text and idly flickers at the end
 - twinkle: characters are randomly swapped out and put back at regular intervals
+
+Web home page logo made with [patorjk's text to ASCII art generator](https://patorjk.com/software/taag/)
