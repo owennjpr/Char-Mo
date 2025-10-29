@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v&color=brightgreen)](https://nodei.co/npm/@char-mo/react/)
+[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v&color=brightgreen)](https://nodei.co/npm/@char-mo/react/) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 # Char-Mo
 
