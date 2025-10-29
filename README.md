@@ -1,7 +1,8 @@
+[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v&color=brightgreen)](https://nodei.co/npm/@char-mo/react/)
+
 # Char-Mo
 
-Character Motion (Char-Mo) React is an npm package containing a collection of ASCII character based text animations/effects for use in React applications.
-To read the docs, see examples, and get more information, check out the [website](https://char-mo.vercel.app/)
+Character Motion (Char-Mo) React is an [npm package](https://www.npmjs.com/package/@char-mo/react) containing a collection of ASCII character based text animations/effects for use in React applications. To read the docs, see examples, and get more information, check out the [website](https://char-mo.vercel.app/)
 
 ## Installation
 
@@ -19,7 +20,7 @@ more examples [here](https://char-mo.vercel.app/)
 
 ## Current Effects
 
-Effects are split into different categories based on when they trigger.
+Effects are split into different categories based on when they trigger. This package is relatively new so there aren't too many effects yet.
 
 ### Enters
 
