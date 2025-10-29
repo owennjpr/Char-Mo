@@ -1,4 +1,4 @@
-[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v&color=brightgreen)](https://nodei.co/npm/@char-mo/react/) ![License](https://img.shields.io/badge/license-MIT-blue)
+[![NPM](https://nodei.co/npm/@char-mo/react.svg?style=flat&data=n,v)](https://nodei.co/npm/@char-mo/react/) ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/char-mo) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 # Char-Mo
 
@@ -36,3 +36,4 @@ Effects that trigger when the Txt object is hovered over
 
 - cursor sweep: a cursor character moves left to right through the text and idly flickers at the end
 - twinkle: characters are randomly swapped out and put back at regular intervals
+
