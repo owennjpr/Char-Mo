@@ -22,6 +22,30 @@ const cutiveMono = Cutive_Mono({
 export const metadata: Metadata = {
   title: "Char Motion",
   description: "am npm package for ASCII character based text animation",
+  keywords: [
+    "npm",
+    "react",
+    "web dev",
+    "ascii",
+    "ascii art",
+    "ascii animation",
+    "text",
+    "text animation",
+    "text motion",
+    "character animation",
+  ],
+  publisher: "Owen Prendergast",
+  openGraph: {
+    type: "website",
+    determiner: "",
+    url: "https://char-motion.vercel.app/",
+    title: "Char Motion",
+    siteName: "Char Motion",
+    description: "am npm package for ASCII character based text animation",
+    emails: "owenprendergast8@gmail.com",
+    locale: "en_US",
+    // images: { url: "" },
+  },
 };
 
 export default function RootLayout({
