@@ -1,6 +1,6 @@
 "use client";
 import LinkButton from "./components/LinkButton";
-import { Txt } from "@char-mo/react";
+import { Txt } from "@char-motion/react";
 export default function Home() {
   return (
     <div className="w-full h-screen p-4 font-cutive flex flex-col justify-between">

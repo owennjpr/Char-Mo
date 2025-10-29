@@ -1,5 +1,5 @@
 {
-  "name": "char-mo",
+  "name": "char-motion",
   "private": true,
   "workspaces": [
     "packages/*",

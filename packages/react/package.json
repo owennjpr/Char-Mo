@@ -1,6 +1,6 @@
 {
-  "name": "@char-mo/react",
-  "version": "0.1.3",
+  "name": "@char-motion/react",
+  "version": "0.1.0",
   "author": {
     "name": "Owen Prendergast",
     "email": "owenprendergast8@gmail.com"
@@ -11,7 +11,8 @@
     "animation",
     "text",
     "ascii art",
-    "char-mo", 
+    "character-animation",
+    "motion",
     "text-animation"
   ],
   "main": "dist/index.js",
@@ -20,7 +21,7 @@
   "files": [
     "dist"
   ],
-  "description": "Char-Mo React: an ASCII character animation library for react",
+  "description": "Char Motion React: an ASCII character animation library for react",
   "license": "MIT",
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean"
@@ -37,10 +38,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owennjpr/Char-Mo"
+    "url": "git+https://github.com/owennjpr/char-motion"
   },
   "bugs": {
-    "url": "https://github.com/owennjpr/Char-Mo/issues"
+    "url": "https://github.com/owennjpr/char-motion/issues"
   },
   "homepage": "https://char-mo.vercel.app/"
 

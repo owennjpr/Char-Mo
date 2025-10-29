@@ -20,7 +20,7 @@ const cutiveMono = Cutive_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Char-Mo",
+  title: "Char Motion",
   description: "am npm package for ASCII character based text animation",
 };
 

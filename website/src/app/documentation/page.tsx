@@ -1,7 +1,7 @@
 "use client";
 import LinkButton from "@/components/LinkButton";
 import RefreshButton from "@/components/RefreshButton";
-import { Txt } from "@char-mo/react";
+import { Txt } from "@char-motion/react";
 import React, { useState } from "react";
 
 function Documentation() {
@@ -42,7 +42,7 @@ function Documentation() {
  |_____/ \\___/ \\___|\\__,_|_| |_| |_|\\___|_| |_|\\__\\__,_|\\__|_|\\___/|_| |_|`}</Txt>
         <div className="w-1/2">
           <Txt className="text-2xl">Installation</Txt>
-          <p className="bg-[#0003] p-4 text-base">npm i react-ascii-text</p>
+          <p className="bg-[#0003] p-4 text-base">npm i @char-motion/react</p>
         </div>
         <div className="w-1/2 flex flex-col gap-2">
           <Txt className="text-2xl">Usage</Txt>
@@ -52,7 +52,7 @@ function Documentation() {
             <span className="text-xs">no spans yet sorry :(</span>
           </p>
           <p className="bg-[#0003] p-4 text-base whitespace-pre-wrap overflow-x-scroll">
-            {`import { Txt } from "@char-mo/react";
+            {`import { Txt } from "@char-motion/react";
 
 <Txt enter={{ type: "typed sweep" }}>
   Hello World!

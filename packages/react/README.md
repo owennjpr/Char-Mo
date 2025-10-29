@@ -1,15 +1,15 @@
-# Char-Mo
+# Char Motion
 
-Character Motion (Char-Mo) React is a collection of ASCII character based text animations/effects for use in React applications.
+Char(acter) Motion is a collection of ASCII character based text animations/effects for use in React applications.
 To read the docs, see examples, and get more information, check out the [website](https://char-mo.vercel.app/)
 
 ## Installation
 
-        npm i @char-mo/react
+        npm i @char-motion/react
 
 ## Basic Usage
 
-        import { Txt } from "@char-mo/react";
+        import { Txt } from "@char-motion/react";
 
         <Txt enter={{ type: "typed sweep" }}>
             Hello World!
