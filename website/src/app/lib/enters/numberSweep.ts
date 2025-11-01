@@ -3,13 +3,21 @@ import { LetterState, NumberSweepFn } from "../types";
 export const numberSweep: NumberSweepFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: { rate?: number; cyclesPerDigit?: number; characterPool?: string }
+  options?: {
+    rate?: number;
+    cyclesPerDigit?: number;
+    characterPool?: string;
+    startDelay?: number;
+  }
 ) => {
   const {
     rate = 40,
     cyclesPerDigit = 5,
     characterPool = "0123456789",
+    startDelay = 0,
   } = options || {};
+
+  await new Promise((r) => setTimeout(r, startDelay));
 
   let remainingCycles = text.length * cyclesPerDigit;
 

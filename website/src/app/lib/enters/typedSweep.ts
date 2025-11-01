@@ -3,9 +3,12 @@ import { LetterState, TypedSweepFn } from "../types";
 export const typedSweep: TypedSweepFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: { rate?: number; cursor?: string }
+  options?: { rate?: number; cursor?: string; startDelay?: number }
 ) => {
-  const { rate = 40, cursor = "_" } = options || {};
+  const { rate = 40, cursor = "_", startDelay = 0 } = options || {};
+
+  await new Promise((r) => setTimeout(r, startDelay));
+
   const updated = text.map((l) => ({ ...l, char: "" }));
   setText([...updated]);
 

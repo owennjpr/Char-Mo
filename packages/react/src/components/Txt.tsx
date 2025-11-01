@@ -26,6 +26,7 @@ export const Txt = (props: TxtProps) => {
   });
   hoveringRef.current = hovering;
 
+  // refs to reduce need for rerendering / retriggering effects
   const enterRef = useRef<Enter | null>(enter);
   const hoverRef = useRef<Hover | null>(hover);
 
@@ -40,11 +41,16 @@ export const Txt = (props: TxtProps) => {
   useEffect(() => {
     let active = true;
 
+    // if the children change but the component already
+    // entered / there is no enter anim, then just set to the new child
     const initialLetters = children
       .split("")
-      .map((c) => ({ char: "", target: c }));
+      .map((c) => ({ char: entered || !enterRef.current ? c : "", target: c }));
+
+    setText(initialLetters);
 
     (async () => {
+      if (entered) return;
       if (enterRef.current && enterEffects[enterRef.current.type]) {
         await enterEffects[enterRef.current.type](
           initialLetters,
@@ -57,7 +63,7 @@ export const Txt = (props: TxtProps) => {
     return () => {
       active = false;
     };
-  }, [children]);
+  }, [children, entered]);
 
   useEffect(() => {
     if (!hoverRef.current || !entered) return;

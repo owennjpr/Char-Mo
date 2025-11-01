@@ -3,9 +3,16 @@ import { LetterState, RandomizedFn } from "../../types";
 export const randomized: RandomizedFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: { maxDelay?: number; characterPool?: string }
+  options?: { maxDelay?: number; characterPool?: string; startDelay?: number }
 ) => {
-  const { maxDelay = 1000, characterPool = "-._-" } = options || {};
+  const {
+    maxDelay = 1000,
+    characterPool = "-._-",
+    startDelay = 0,
+  } = options || {};
+
+  await new Promise((r) => setTimeout(r, startDelay));
+
   const pool = characterPool.split("");
 
   await Promise.all(

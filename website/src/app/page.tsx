@@ -1,7 +1,6 @@
 "use client";
 import LinkButton from "./components/LinkButton";
 import { Txt } from "@char-motion/react";
-import TxtDev from "@/components/TxtDev";
 
 export default function Home() {
   return (

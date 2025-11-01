@@ -4,6 +4,7 @@ export type Enter =
       options?: {
         maxDelay?: number;
         characterPool?: string;
+        startDelay?: number;
       };
     }
   | {
@@ -11,6 +12,7 @@ export type Enter =
       options?: {
         rate?: number;
         cursor?: string;
+        startDelay?: number;
       };
     }
   | {
@@ -19,6 +21,7 @@ export type Enter =
         rate?: number;
         cyclesPerDigit?: number;
         characterPool?: string;
+        startDelay?: number;
       };
     };
 
@@ -50,18 +53,21 @@ export type Hover =
       };
     };
 
+// internal state for characters
 export type LetterState = {
-  char: string;
-  target: string;
+  char: string; // current display character
+  target: string; // final character (based on passed children)
   className?: string;
   style?: React.CSSProperties;
 };
 
+// internal state for hover
 export type HoverState = {
   hover: boolean;
-  index: number;
+  index: number; // for effects that care about which letters are hovered
 };
 
+// generic effect type
 export type EffectFn<T extends object> = (
   text: LetterState[],
   setText: (l: LetterState[]) => void,
@@ -70,15 +76,21 @@ export type EffectFn<T extends object> = (
 ) => Promise<void>;
 
 // Enter Functions
-export type TypedSweepFn = EffectFn<{ rate?: number; cursor?: string }>;
+export type TypedSweepFn = EffectFn<{
+  rate?: number;
+  cursor?: string;
+  startDelay?: number;
+}>;
 export type NumberSweepFn = EffectFn<{
   rate?: number;
   cyclesPerDigit?: number;
   characterPool?: string;
+  startDelay?: number;
 }>;
 export type RandomizedFn = EffectFn<{
   maxDelay?: number;
   characterPool?: string;
+  startDelay?: number;
 }>;
 
 // Hover Functions

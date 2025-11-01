@@ -3,14 +3,14 @@ import { Enter, Hover, LetterState, HoverState } from "../lib/types";
 import { enterEffects } from "../lib/enterMap";
 import { hoverEffects } from "../lib/hoverMap";
 
-interface DTextProps extends React.HTMLAttributes<HTMLParagraphElement> {
+interface TxtProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: string;
   enter?: Enter | null;
   hover?: Hover | null;
 }
 
-function TxtDev(props: DTextProps) {
-  const { children, enter, hover, ...rest } = props;
+export const TxtDev = (props: TxtProps) => {
+  const { children, enter = null, hover = null, ...rest } = props;
 
   const [text, setText] = useState<LetterState[]>(
     children.split("").map((c) => ({ char: c, target: c }))
@@ -26,6 +26,7 @@ function TxtDev(props: DTextProps) {
   });
   hoveringRef.current = hovering;
 
+  // refs to reduce need for rerendering / retriggering effects
   const enterRef = useRef<Enter | null>(enter);
   const hoverRef = useRef<Hover | null>(hover);
 
@@ -40,11 +41,16 @@ function TxtDev(props: DTextProps) {
   useEffect(() => {
     let active = true;
 
+    // if the children change but the component already
+    // entered / there is no enter anim, then just set to the new child
     const initialLetters = children
       .split("")
-      .map((c) => ({ char: "", target: c }));
+      .map((c) => ({ char: entered || !enterRef.current ? c : "", target: c }));
+
+    setText(initialLetters);
 
     (async () => {
+      if (entered) return;
       if (enterRef.current && enterEffects[enterRef.current.type]) {
         await enterEffects[enterRef.current.type](
           initialLetters,
@@ -57,7 +63,7 @@ function TxtDev(props: DTextProps) {
     return () => {
       active = false;
     };
-  }, [children]);
+  }, [children, entered]);
 
   useEffect(() => {
     if (!hoverRef.current || !entered) return;
@@ -100,6 +106,4 @@ function TxtDev(props: DTextProps) {
       ))}
     </p>
   );
-}
-
-export default TxtDev;
+};
