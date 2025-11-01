@@ -35,5 +35,6 @@ Effects that trigger when the Txt object is hovered over
 
 - cursor sweep: a cursor character moves left to right through the text and idly flickers at the end
 - twinkle: characters are randomly swapped out and put back at regular intervals
+- shuffle: text between delimiter characters is randomly shuffled
 
 Web home page logo made with [patorjk's text to ASCII art generator](https://patorjk.com/software/taag/)

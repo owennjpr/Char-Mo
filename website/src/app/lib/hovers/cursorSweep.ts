@@ -1,4 +1,4 @@
-import { CursorSweepFn, LetterState } from "../types";
+import { CursorSweepFn, LetterState, HoverState } from "../types";
 
 export const cursorSweep: CursorSweepFn = async (
   text: LetterState[],
@@ -9,10 +9,10 @@ export const cursorSweep: CursorSweepFn = async (
     idle?: boolean;
     idleRate?: number;
   },
-  hover?: () => boolean
+  hover?: () => HoverState
 ) => {
   // Reset to original state when hover is false
-  if (!hover || !hover()) {
+  if (!hover || !hover().hover) {
     const resetText = text.map((letter) => ({
       ...letter,
       char: letter.target,
@@ -59,18 +59,18 @@ export const cursorSweep: CursorSweepFn = async (
   updateText();
 
   // sweep phase
-  while (sweepIndex < text.length && hover()) {
+  while (sweepIndex < text.length && hover().hover) {
     await new Promise((resolve) => setTimeout(resolve, rate));
     sweepIndex++;
     updateText();
   }
 
   // transition to flicker phase (if idle selected)
-  if (sweepIndex >= text.length && idle && hover()) {
+  if (sweepIndex >= text.length && idle && hover().hover) {
     flicker = true;
 
     // flicker phase
-    while (hover()) {
+    while (hover().hover) {
       await new Promise((resolve) => setTimeout(resolve, idleRate));
       flickerState = !flickerState;
       updateText();

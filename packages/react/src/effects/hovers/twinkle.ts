@@ -1,4 +1,4 @@
-import { LetterState, TwinkleFn } from "../../types";
+import { LetterState, TwinkleFn, HoverState } from "../../types";
 
 export const twinkle: TwinkleFn = async (
   text: LetterState[],
@@ -9,7 +9,7 @@ export const twinkle: TwinkleFn = async (
     characterPool?: string;
     opacity?: number;
   },
-  hover?: () => boolean
+  hover?: () => HoverState
 ) => {
   const {
     rate = 100,
@@ -18,7 +18,7 @@ export const twinkle: TwinkleFn = async (
     opacity = 1,
   } = options || {};
   const len = text.length;
-  while (hover && hover()) {
+  while (hover && hover().hover) {
     const count = Math.floor(Math.random() * maxNum);
     const ids = Array.from({ length: count }, () =>
       Math.floor(Math.random() * len)

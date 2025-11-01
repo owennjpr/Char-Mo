@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Enter, Hover, LetterState } from "../types";
+import { Enter, Hover, LetterState, HoverState } from "../types";
 import { enterEffects } from "../enterMap";
 import { hoverEffects } from "../hoverMap";
 
@@ -9,15 +9,21 @@ interface TxtProps extends React.HTMLAttributes<HTMLParagraphElement> {
   hover?: Hover | null;
 }
 
-export function Txt(props: TxtProps) {
+export const Txt = (props: TxtProps) => {
   const { children, enter = null, hover = null, ...rest } = props;
 
   const [text, setText] = useState<LetterState[]>(
     children.split("").map((c) => ({ char: c, target: c }))
   );
   const [entered, setEntered] = useState<boolean>(false);
-  const [hovering, setHovering] = useState<boolean>(false);
-  const hoveringRef = useRef<boolean>(false);
+  const [hovering, setHovering] = useState<HoverState>({
+    hover: false,
+    index: -1,
+  });
+  const hoveringRef = useRef<HoverState>({
+    hover: false,
+    index: -1,
+  });
   hoveringRef.current = hovering;
 
   const enterRef = useRef<Enter | null>(enter);
@@ -86,12 +92,12 @@ export function Txt(props: TxtProps) {
           key={i}
           className={l.className}
           style={l.style}
-          onMouseEnter={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
+          onMouseEnter={() => setHovering({ hover: true, index: i })}
+          onMouseLeave={() => setHovering({ hover: false, index: i })}
         >
           {l.char}
         </span>
       ))}
     </p>
   );
-}
+};

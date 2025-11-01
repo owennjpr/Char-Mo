@@ -104,7 +104,7 @@ var enterEffects = {
 
 // src/effects/hovers/cursorSweep.ts
 var cursorSweep = async (text, setText, options, hover) => {
-  if (!hover || !hover()) {
+  if (!hover || !hover().hover) {
     const resetText = text.map((letter) => ({
       ...letter,
       char: letter.target
@@ -142,14 +142,14 @@ var cursorSweep = async (text, setText, options, hover) => {
     setText([...updated]);
   };
   updateText();
-  while (sweepIndex < text.length && hover()) {
+  while (sweepIndex < text.length && hover().hover) {
     await new Promise((resolve) => setTimeout(resolve, rate));
     sweepIndex++;
     updateText();
   }
-  if (sweepIndex >= text.length && idle && hover()) {
+  if (sweepIndex >= text.length && idle && hover().hover) {
     flicker = true;
-    while (hover()) {
+    while (hover().hover) {
       await new Promise((resolve) => setTimeout(resolve, idleRate));
       flickerState = !flickerState;
       updateText();
@@ -166,7 +166,7 @@ var twinkle = async (text, setText, options, hover) => {
     opacity = 1
   } = options || {};
   const len = text.length;
-  while (hover && hover()) {
+  while (hover && hover().hover) {
     const count = Math.floor(Math.random() * maxNum);
     const ids = Array.from(
       { length: count },
@@ -187,23 +187,61 @@ var twinkle = async (text, setText, options, hover) => {
   setText([...resetText]);
 };
 
+// src/effects/hovers/wordShuffle.ts
+var wordShuffle = async (text, setText, options, hover) => {
+  const {
+    rate = 40,
+    characterPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    delimiter = " "
+  } = options || {};
+  let block = 0;
+  const textBlocks = [];
+  for (let i = 0; i < text.length; i++) {
+    const l = text[i];
+    if (l.target == delimiter) {
+      block += 1;
+    }
+    textBlocks.push({ ...l, block });
+  }
+  while (hover && hover().hover) {
+    const targetBlock = textBlocks[hover().index].block;
+    const newText = textBlocks.map((letter, i) => ({
+      ...letter,
+      char: letter.block == targetBlock && letter.target !== delimiter ? characterPool[Math.floor(Math.random() * characterPool.length)] : letter.target
+    }));
+    setText(newText);
+    await new Promise((resolve) => setTimeout(resolve, rate));
+  }
+  const resetText = text.map((letter) => ({
+    ...letter,
+    char: letter.target
+  }));
+  setText([...resetText]);
+};
+
 // src/hoverMap.ts
 var hoverEffects = {
   "cursor sweep": cursorSweep,
-  // "word shuffle": wordShuffle,
+  shuffle: wordShuffle,
   twinkle
 };
 
 // src/components/Txt.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-function Txt(props) {
+var Txt = (props) => {
   const { children, enter = null, hover = null, ...rest } = props;
   const [text, setText] = (0, import_react.useState)(
     children.split("").map((c) => ({ char: c, target: c }))
   );
   const [entered, setEntered] = (0, import_react.useState)(false);
-  const [hovering, setHovering] = (0, import_react.useState)(false);
-  const hoveringRef = (0, import_react.useRef)(false);
+  const [hovering, setHovering] = (0, import_react.useState)({
+    hover: false,
+    index: -1
+  });
+  const hoveringRef = (0, import_react.useRef)({
+    hover: false,
+    index: -1
+  });
   hoveringRef.current = hovering;
   const enterRef = (0, import_react.useRef)(enter);
   const hoverRef = (0, import_react.useRef)(hover);
@@ -255,13 +293,13 @@ function Txt(props) {
     {
       className: l.className,
       style: l.style,
-      onMouseEnter: () => setHovering(true),
-      onMouseLeave: () => setHovering(false),
+      onMouseEnter: () => setHovering({ hover: true, index: i }),
+      onMouseLeave: () => setHovering({ hover: false, index: i }),
       children: l.char
     },
     i
   )) });
-}
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Txt

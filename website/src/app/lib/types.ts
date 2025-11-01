@@ -33,10 +33,11 @@ export type Hover =
       };
     }
   | {
-      type: "word shuffle";
+      type: "shuffle";
       options?: {
         rate?: number;
         characterPool?: string;
+        delimiter?: string;
       };
     }
   | {
@@ -56,11 +57,16 @@ export type LetterState = {
   style?: React.CSSProperties;
 };
 
+export type HoverState = {
+  hover: boolean;
+  index: number;
+};
+
 export type EffectFn<T extends object> = (
   text: LetterState[],
   setText: (l: LetterState[]) => void,
   options?: T,
-  hover?: () => boolean
+  hover?: () => HoverState
 ) => Promise<void>;
 
 // Enter Functions

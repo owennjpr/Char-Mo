@@ -1,6 +1,8 @@
 "use client";
 import LinkButton from "./components/LinkButton";
 import { Txt } from "@char-motion/react";
+import TxtDev from "@/components/TxtDev";
+
 export default function Home() {
   return (
     <div className="w-full h-screen p-4 font-cutive flex flex-col justify-between">
@@ -30,10 +32,7 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
   ${"`"}"bmmmd'  .JMML  JMML.${"`"}Moo9^Yo..JMML.       .JML. ${"`"}'  .JMML.${"`"}Ybmd9'  ${"`"}Mbmo.JMML.${"`"}Ybmd9'.JMML  JMML.`}</Txt>
 
         <div className="flex flex-col items-center">
-          <Txt
-            // enter={{ type: "randomized", options: { maxDelay: 1000 } }}
-            className="text-sm/4 sm:text-base/5 py-4 w-5/6 max-w-3xl"
-          >
+          <Txt className="text-sm/4 sm:text-base/5 py-4 w-5/6 max-w-3xl">
             A collection of ASCII character based text animations built with
             React and TypeScript and bundled into an npm package. This site
             includes documentation for the package as well as examples and code

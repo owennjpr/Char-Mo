@@ -30,6 +30,13 @@ type Hover = {
         idleRate?: number;
     };
 } | {
+    type: "shuffle";
+    options?: {
+        rate?: number;
+        characterPool?: string;
+        delimiter?: string;
+    };
+} | {
     type: "twinkle";
     options?: {
         rate?: number;
@@ -44,6 +51,6 @@ interface TxtProps extends React.HTMLAttributes<HTMLParagraphElement> {
     enter?: Enter | null;
     hover?: Hover | null;
 }
-declare function Txt(props: TxtProps): react_jsx_runtime.JSX.Element;
+declare const Txt: (props: TxtProps) => react_jsx_runtime.JSX.Element;
 
 export { Txt };
