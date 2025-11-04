@@ -163,9 +163,10 @@ function Documentation() {
                   options: { rate: 20, cursor: "█" },
                 }}
                 hover={{
-                  type: "cursor sweep",
+                  type: "typed sweep",
                   options: { rate: 20, idleRate: 300, cursor: "█" },
                 }}
+                morph={{ type: "retype" }}
               >
                 This text enters and hovers!
               </Txt>

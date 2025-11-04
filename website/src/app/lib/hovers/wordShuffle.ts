@@ -26,6 +26,11 @@ export const wordShuffle: WordShuffleFn = async (
     textBlocks.push({ ...l, block: block });
   }
   while (hover && hover().hover) {
+    // Wait for index to be set when mouse enters a specific span
+    if (hover().index === -1) {
+      await new Promise((resolve) => setTimeout(resolve, rate));
+      continue;
+    }
     const targetBlock = textBlocks[hover().index].block;
     const newText = textBlocks.map((letter) => ({
       ...letter,

@@ -4,12 +4,12 @@ import { wordShuffle } from "./effects/hovers/wordShuffle";
 import { CursorSweepFn, WordShuffleFn, TwinkleFn } from "./types";
 
 type HoverEffectMap = {
-  "cursor sweep": CursorSweepFn;
+  "typed sweep": CursorSweepFn;
   shuffle: WordShuffleFn;
   twinkle: TwinkleFn;
 };
 export const hoverEffects: HoverEffectMap = {
-  "cursor sweep": cursorSweep,
+  "typed sweep": cursorSweep,
   shuffle: wordShuffle,
   twinkle: twinkle,
 };

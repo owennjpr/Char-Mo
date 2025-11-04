@@ -14,15 +14,25 @@ function Test() {
       >
         swap
       </button>
-      <p>{mode ? "abracadabra" : "hocus pocus"}</p>
-      <TxtDev enter={{ type: "typed sweep" }}>
-        {mode ? "abracadabra" : "hocus pocus"}
+      <p>{mode ? "abra" : "hocus pocus"}</p>
+      <TxtDev
+        enter={{ type: "randomized" }}
+        hover={{ type: "shuffle" }}
+        // morph={{ type: "retype" }}
+      >
+        {mode ? "abra" : "hocus pocus"}
       </TxtDev>
-      <TxtDev enter={{ type: "typed sweep", options: { startDelay: 0 } }}>
+      <TxtDev
+        enter={{ type: "typed sweep", options: { startDelay: 0 } }}
+        hover={{ type: "cursor sweep", options: { rate: 100 } }}
+      >
         Hiiiii
       </TxtDev>
-      <TxtDev enter={{ type: "typed sweep", options: { startDelay: 1000 } }}>
-        Hiiiii
+      <TxtDev
+        enter={{ type: "typed sweep", options: { startDelay: 1000 } }}
+        hover={{ type: "shuffle" }}
+      >
+        Hiiiii Byeeeeeeee
       </TxtDev>
       <TxtDev enter={{ type: "typed sweep", options: { startDelay: 2000 } }}>
         Hiiiii

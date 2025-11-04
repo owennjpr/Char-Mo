@@ -27,7 +27,7 @@ export type Enter =
 
 export type Hover =
   | {
-      type: "cursor sweep";
+      type: "typed sweep";
       options?: {
         rate?: number;
         cursor?: string;
@@ -53,6 +53,15 @@ export type Hover =
       };
     };
 
+export type Morph = {
+  type: "retype";
+  options?: {
+    deleteRate?: number;
+    typeRate?: number;
+    cursor?: string;
+  };
+};
+
 // internal state for characters
 export type LetterState = {
   char: string; // current display character
@@ -72,7 +81,8 @@ export type EffectFn<T extends object> = (
   text: LetterState[],
   setText: (l: LetterState[]) => void,
   options?: T,
-  hover?: () => HoverState
+  hover?: () => HoverState,
+  prevText?: LetterState[]
 ) => Promise<void>;
 
 // Enter Functions
@@ -111,4 +121,11 @@ export type TwinkleFn = EffectFn<{
   maxNum?: number;
   characterPool?: string;
   opacity?: number;
+}>;
+
+// Morph Functions
+export type RetypeFn = EffectFn<{
+  deleteRate?: number;
+  typeRate?: number;
+  cursor?: string;
 }>;

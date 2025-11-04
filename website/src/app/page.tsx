@@ -38,7 +38,10 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
             snippets for individual effects.
           </Txt>
           <Txt
-            enter={{ type: "typed sweep", options: { rate: 60 } }}
+            enter={{
+              type: "typed sweep",
+              options: { rate: 60, startDelay: 1500 },
+            }}
             className="pb-4 text-sm sm:text-base"
           >
             npm i @char-motion/react

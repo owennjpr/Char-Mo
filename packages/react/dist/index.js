@@ -32,8 +32,10 @@ var numberSweep = async (text, setText, options) => {
   const {
     rate = 40,
     cyclesPerDigit = 5,
-    characterPool = "0123456789"
+    characterPool = "0123456789",
+    startDelay = 0
   } = options || {};
+  await new Promise((r) => setTimeout(r, startDelay));
   let remainingCycles = text.length * cyclesPerDigit;
   while (remainingCycles > 0) {
     const index = Math.floor(remainingCycles / Math.max(cyclesPerDigit, 1));
@@ -52,7 +54,12 @@ var numberSweep = async (text, setText, options) => {
 
 // src/effects/enters/randomized.ts
 var randomized = async (text, setText, options) => {
-  const { maxDelay = 1e3, characterPool = "-._-" } = options || {};
+  const {
+    maxDelay = 1e3,
+    characterPool = "-._-",
+    startDelay = 0
+  } = options || {};
+  await new Promise((r) => setTimeout(r, startDelay));
   const pool = characterPool.split("");
   await Promise.all(
     text.map(async (_, i) => {
@@ -74,7 +81,8 @@ var randomized = async (text, setText, options) => {
 
 // src/effects/enters/typedSweep.ts
 var typedSweep = async (text, setText, options) => {
-  const { rate = 40, cursor = "_" } = options || {};
+  const { rate = 40, cursor = "_", startDelay = 0 } = options || {};
+  await new Promise((r) => setTimeout(r, startDelay));
   const updated = text.map((l) => ({ ...l, char: "" }));
   setText([...updated]);
   for (let i = 0; i < text.length; i++) {
@@ -88,11 +96,13 @@ var typedSweep = async (text, setText, options) => {
     setText([...updated]);
     await new Promise((r) => setTimeout(r, rate));
   }
-  updated[text.length - 1] = {
-    ...updated[text.length - 1],
-    char: updated[text.length - 1].target
-  };
-  setText([...updated]);
+  if (updated.length > 0) {
+    updated[text.length - 1] = {
+      ...updated[text.length - 1],
+      char: updated[text.length - 1].target
+    };
+    setText([...updated]);
+  }
 };
 
 // src/enterMap.ts
@@ -204,8 +214,12 @@ var wordShuffle = async (text, setText, options, hover) => {
     textBlocks.push({ ...l, block });
   }
   while (hover && hover().hover) {
+    if (hover().index === -1) {
+      await new Promise((resolve) => setTimeout(resolve, rate));
+      continue;
+    }
     const targetBlock = textBlocks[hover().index].block;
-    const newText = textBlocks.map((letter, i) => ({
+    const newText = textBlocks.map((letter) => ({
       ...letter,
       char: letter.block == targetBlock && letter.target !== delimiter ? characterPool[Math.floor(Math.random() * characterPool.length)] : letter.target
     }));
@@ -221,30 +235,84 @@ var wordShuffle = async (text, setText, options, hover) => {
 
 // src/hoverMap.ts
 var hoverEffects = {
-  "cursor sweep": cursorSweep,
+  "typed sweep": cursorSweep,
   shuffle: wordShuffle,
   twinkle
+};
+
+// src/effects/morphs/retype.ts
+var retype = async (text, setText, options, hover, prevText) => {
+  const { deleteRate = 40, typeRate = 40, cursor = "_" } = options || {};
+  if (!prevText) return;
+  const targetString = text.map((l) => l.target).toString();
+  const prevTargetString = prevText.map((l) => l.target).toString();
+  if (targetString === prevTargetString) return;
+  const toDelete = prevText.map((l) => ({ ...l }));
+  setText([...toDelete]);
+  let deleteIndex = toDelete.length - 1;
+  while (deleteIndex >= 0) {
+    toDelete[deleteIndex] = {
+      ...toDelete[deleteIndex],
+      char: cursor
+    };
+    setText([...toDelete]);
+    await new Promise((r) => setTimeout(r, deleteRate));
+    toDelete[deleteIndex] = {
+      ...toDelete[deleteIndex],
+      char: ""
+    };
+    setText([...toDelete]);
+    deleteIndex--;
+  }
+  const toType = text.map((l) => ({ ...l, char: "" }));
+  setText([...toType]);
+  for (let i = 0; i < toType.length; i++) {
+    if (i > 0) {
+      toType[i - 1] = {
+        ...toType[i - 1],
+        char: toType[i - 1].target
+      };
+    }
+    toType[i] = { ...toType[i], char: cursor };
+    setText([...toType]);
+    await new Promise((r) => setTimeout(r, typeRate));
+  }
+  if (toType.length > 0) {
+    toType[toType.length - 1] = {
+      ...toType[toType.length - 1],
+      char: toType[toType.length - 1].target
+    };
+    setText([...toType]);
+  }
+};
+
+// src/morphMap.ts
+var morphEffects = {
+  retype
 };
 
 // src/components/Txt.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
 var Txt = (props) => {
-  const { children, enter = null, hover = null, ...rest } = props;
-  const [text, setText] = (0, import_react.useState)(
-    children.split("").map((c) => ({ char: c, target: c }))
-  );
-  const [entered, setEntered] = (0, import_react.useState)(false);
-  const [hovering, setHovering] = (0, import_react.useState)({
-    hover: false,
-    index: -1
-  });
+  const { children, enter = null, hover = null, morph = null, ...rest } = props;
+  const [text, setText] = (0, import_react.useState)([]);
+  const textRef = (0, import_react.useRef)([]);
+  const [isHovering, setIsHovering] = (0, import_react.useState)(false);
+  const [hoverIndex, setHoverIndex] = (0, import_react.useState)(-1);
   const hoveringRef = (0, import_react.useRef)({
     hover: false,
     index: -1
   });
-  hoveringRef.current = hovering;
+  const [entered, setEntered] = (0, import_react.useState)(false);
+  const [morphing, setMorphing] = (0, import_react.useState)(false);
+  textRef.current = text;
+  hoveringRef.current = {
+    hover: isHovering,
+    index: hoverIndex
+  };
   const enterRef = (0, import_react.useRef)(enter);
   const hoverRef = (0, import_react.useRef)(hover);
+  const morphRef = (0, import_react.useRef)(morph);
   (0, import_react.useEffect)(() => {
     enterRef.current = enter;
   }, [enter]);
@@ -252,30 +320,51 @@ var Txt = (props) => {
     hoverRef.current = hover;
   }, [hover]);
   (0, import_react.useEffect)(() => {
+    morphRef.current = morph;
+  }, [morph]);
+  (0, import_react.useEffect)(() => {
     let active = true;
-    const initialLetters = children.split("").map((c) => ({ char: "", target: c }));
-    (async () => {
-      if (enterRef.current && enterEffects[enterRef.current.type]) {
-        await enterEffects[enterRef.current.type](
-          initialLetters,
-          (t) => active && setText(t),
-          enterRef.current.options
-        );
-      }
-      if (active) setEntered(true);
-    })();
+    const initialLetters = children.split("").map((c) => ({ char: entered || !enterRef.current ? c : "", target: c }));
+    if (!entered) {
+      setText(initialLetters);
+      (async () => {
+        if (enterRef.current && enterEffects[enterRef.current.type])
+          await enterEffects[enterRef.current.type](
+            initialLetters,
+            (t) => active && setText(t),
+            enterRef.current.options
+          );
+        if (active) setEntered(true);
+      })();
+    } else if (morphRef.current && morphEffects[morphRef.current.type]) {
+      setMorphing(true);
+      (async () => {
+        if (morphRef.current)
+          await morphEffects[morphRef.current.type](
+            initialLetters,
+            (t) => active && setText(t),
+            morphRef.current.options,
+            () => {
+              return hoveringRef.current;
+            },
+            textRef.current
+          );
+        if (active) setMorphing(false);
+      })();
+    } else {
+      setText(initialLetters);
+    }
     return () => {
       active = false;
     };
-  }, [children]);
+  }, [children, entered]);
   (0, import_react.useEffect)(() => {
-    if (!hoverRef.current || !entered) return;
+    if (!hoverRef.current || !entered || morphing) return;
     let active = true;
-    const initialLetters = children.split("").map((c) => ({ char: "", target: c }));
     (async () => {
       if (hoverRef.current && hoverEffects[hoverRef.current.type]) {
         await hoverEffects[hoverRef.current.type](
-          initialLetters,
+          textRef.current,
           (t) => active && setText(t),
           hoverRef.current.options,
           () => {
@@ -287,18 +376,28 @@ var Txt = (props) => {
     return () => {
       active = false;
     };
-  }, [children, hovering, entered]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { ...rest, children: text.map((l, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-    "span",
+  }, [children, isHovering, entered, morphing]);
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    "p",
     {
-      className: l.className,
-      style: l.style,
-      onMouseEnter: () => setHovering({ hover: true, index: i }),
-      onMouseLeave: () => setHovering({ hover: false, index: i }),
-      children: l.char
-    },
-    i
-  )) });
+      ...rest,
+      onMouseEnter: () => setIsHovering(true),
+      onMouseLeave: () => {
+        setIsHovering(false);
+        setHoverIndex(-1);
+      },
+      children: text.map((l, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "span",
+        {
+          className: l.className,
+          style: l.style,
+          onMouseEnter: () => setHoverIndex(i),
+          children: l.char
+        },
+        i
+      ))
+    }
+  );
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
