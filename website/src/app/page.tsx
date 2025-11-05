@@ -42,7 +42,7 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
               type: "typed sweep",
               options: { rate: 60, startDelay: 1500 },
             }}
-            className="pb-4 text-sm sm:text-base"
+            className="pb-4 h-10 text-sm sm:text-base"
           >
             npm i @char-motion/react
           </Txt>

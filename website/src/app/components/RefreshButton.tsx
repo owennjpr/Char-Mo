@@ -14,7 +14,7 @@ const RefreshButton = (props: RefreshButtonProps) => {
         width="16"
         height="16"
         fill="currentColor"
-        className="bi bi-arrow-clockwise opacity-60 cursor-pointer"
+        className="bi bi-arrow-clockwise cursor-pointer"
         viewBox="0 0 16 16"
         onClick={() => {
           count.current += 1;

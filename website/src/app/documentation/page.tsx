@@ -2,6 +2,7 @@
 import LinkButton from "@/components/LinkButton";
 import RefreshButton from "@/components/RefreshButton";
 import { Txt } from "@char-motion/react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 function Documentation() {
@@ -103,8 +104,11 @@ function Documentation() {
             <p className="text-base pt-4">
               For more customization over each effect use the
               {' "'}options{'"'} prop. Different effects have different sets of
-              options, which you can see by mousing over the prop with your
-              IDE&apos;s IntelliSense or HERE.
+              options, which you can explore in the{" "}
+              <Link href="/gallery" className="text-blue-500">
+                gallery
+              </Link>
+              .
             </p>
             <p className="bg-[#0003] p-4 text-base whitespace-pre-wrap overflow-x-scroll">
               {`<Txt
