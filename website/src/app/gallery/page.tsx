@@ -14,8 +14,8 @@ function Gallery() {
   const lorem =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
   return (
-    <div className="w-full h-screen flex flex-col items-center font-cutive">
-      <div className="pt-4">
+    <div className="w-full h-screen flex flex-col sm:items-center font-cutive">
+      <div className="w-full flex flex-col items-center pt-4">
         <LinkButton path="/">
           <Txt enter={{ type: "typed sweep" }} className="text-lg">
             {"[ back ]"}
@@ -44,7 +44,7 @@ function Gallery() {
  |______|_| |_| \\___|\\___|\\__|  \\_____|\\__,_|_|_|\\___|_|   \\__, |
                                                             __/ |
                                                            |___/ `}</Txt>
-      <table className=" w-full sm:w-5/6 text-xs sm:text-sm md:text-base text-center [&_th]:border [&_th]:[rgb(239, 233, 213)] [&_td]:border [&_td]:[rgb(239, 233, 213)]">
+      <table className=" w-full sm:w-5/6 text-[10px] sm:text-xs md:text-base text-center [&_th]:border [&_th]:[rgb(239, 233, 213)] [&_td]:border [&_td]:[rgb(239, 233, 213)]">
         <colgroup>
           <col style={{ width: "5%" }} />
           <col style={{ width: "10%" }} />
@@ -64,7 +64,7 @@ function Gallery() {
             <td>Enter</td>
             <td>Typed Sweep</td>
             <td>
-              <div className="flex flex-row justify-between gap-4 items-center px-4">
+              <div className="flex flex-row justify-between gap-1 sm:gap-4 items-center px-1 sm:px-4">
                 <Txt
                   key={refresh1}
                   enter={{ type: "typed sweep" }}
@@ -118,7 +118,7 @@ function Gallery() {
             <td>Enter</td>
             <td>Randomized</td>
             <td>
-              <div className="flex flex-row justify-between gap-4 items-center px-4">
+              <div className="flex flex-row justify-between gap-1 sm:gap-4 items-center px-1 sm:px-4">
                 <Txt
                   key={refresh2}
                   enter={{ type: "randomized" }}
@@ -172,7 +172,7 @@ function Gallery() {
             <td>Enter</td>
             <td>Number Sweep</td>
             <td>
-              <div className="flex flex-row justify-between gap-4 items-center px-4">
+              <div className="flex flex-row justify-between gap-1 sm:gap-4 items-center px-1 sm:px-4">
                 <Txt
                   key={refresh3}
                   enter={{ type: "number sweep" }}
@@ -389,7 +389,7 @@ function Gallery() {
             <td>Morph</td>
             <td>Retype</td>
             <td>
-              <div className="flex flex-row justify-between gap-4 items-center px-4">
+              <div className="flex flex-row justify-between gap-1 sm:gap-4 items-center px-1 sm:px-4">
                 <Txt morph={{ type: "retype" }} className="text-left">
                   {morph1
                     ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
