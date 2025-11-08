@@ -1,31 +1,5 @@
-"use strict";
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var index_exports = {};
-__export(index_exports, {
-  Txt: () => Txt
-});
-module.exports = __toCommonJS(index_exports);
-
 // src/components/Txt.tsx
-var import_react = require("react");
+import { useEffect, useState, useRef } from "react";
 
 // src/effects/enters/numberSweep.ts
 var numberSweep = async (text, setText, options) => {
@@ -292,37 +266,37 @@ var morphEffects = {
 };
 
 // src/components/Txt.tsx
-var import_jsx_runtime = require("react/jsx-runtime");
+import { jsx } from "react/jsx-runtime";
 var Txt = (props) => {
   const { children, enter = null, hover = null, morph = null, ...rest } = props;
-  const [text, setText] = (0, import_react.useState)([]);
-  const textRef = (0, import_react.useRef)([]);
-  const [isHovering, setIsHovering] = (0, import_react.useState)(false);
-  const [hoverIndex, setHoverIndex] = (0, import_react.useState)(-1);
-  const hoveringRef = (0, import_react.useRef)({
+  const [text, setText] = useState([]);
+  const textRef = useRef([]);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hoverIndex, setHoverIndex] = useState(-1);
+  const hoveringRef = useRef({
     hover: false,
     index: -1
   });
-  const [entered, setEntered] = (0, import_react.useState)(false);
-  const [morphing, setMorphing] = (0, import_react.useState)(false);
+  const [entered, setEntered] = useState(false);
+  const [morphing, setMorphing] = useState(false);
   textRef.current = text;
   hoveringRef.current = {
     hover: isHovering,
     index: hoverIndex
   };
-  const enterRef = (0, import_react.useRef)(enter);
-  const hoverRef = (0, import_react.useRef)(hover);
-  const morphRef = (0, import_react.useRef)(morph);
-  (0, import_react.useEffect)(() => {
+  const enterRef = useRef(enter);
+  const hoverRef = useRef(hover);
+  const morphRef = useRef(morph);
+  useEffect(() => {
     enterRef.current = enter;
   }, [enter]);
-  (0, import_react.useEffect)(() => {
+  useEffect(() => {
     hoverRef.current = hover;
   }, [hover]);
-  (0, import_react.useEffect)(() => {
+  useEffect(() => {
     morphRef.current = morph;
   }, [morph]);
-  (0, import_react.useEffect)(() => {
+  useEffect(() => {
     let active = true;
     const initialLetters = children.split("").map((c) => ({ char: entered || !enterRef.current ? c : "", target: c }));
     if (!entered) {
@@ -358,7 +332,7 @@ var Txt = (props) => {
       active = false;
     };
   }, [children, entered]);
-  (0, import_react.useEffect)(() => {
+  useEffect(() => {
     if (!hoverRef.current || !entered || morphing) return;
     let active = true;
     (async () => {
@@ -377,7 +351,7 @@ var Txt = (props) => {
       active = false;
     };
   }, [children, isHovering, entered, morphing]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  return /* @__PURE__ */ jsx(
     "p",
     {
       ...rest,
@@ -386,7 +360,7 @@ var Txt = (props) => {
         setIsHovering(false);
         setHoverIndex(-1);
       },
-      children: text.map((l, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      children: text.map((l, i) => /* @__PURE__ */ jsx(
         "span",
         {
           className: l.className,
@@ -399,7 +373,6 @@ var Txt = (props) => {
     }
   );
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+export {
   Txt
-});
+};

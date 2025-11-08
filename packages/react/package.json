@@ -1,6 +1,6 @@
 {
   "name": "@char-motion/react",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "author": {
     "name": "Owen Prendergast",
     "email": "owenprendergast8@gmail.com"
@@ -15,12 +15,17 @@
     "motion",
     "text-animation"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "type": "module",
+  "files": ["dist"],
   "description": "Char Motion React: an ASCII character animation library for react",
   "license": "MIT",
   "scripts": {
