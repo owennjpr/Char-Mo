@@ -1,10 +1,9 @@
-// app/components/PageWrapper.tsx
 "use client";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import CodeBlock from "./CodeBlock";
-import ShowCodeButton from "./components/ShowCodeButton";
 import { useState, useEffect } from "react";
+// import ShowCodeButton from "./components/ShowCodeButton";
 
 export default function PageWrapper({
   children,
@@ -12,7 +11,7 @@ export default function PageWrapper({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  // const isHomePage = pathname === "/";
   const [isThin, setIsThin] = useState<boolean>(false);
   const [codeOpen, setCodeOpen] = useState<boolean>(false);
 
@@ -67,9 +66,9 @@ export default function PageWrapper({
           </motion.div>
         )}
       </AnimatePresence>
-      {!isHomePage && isThin && (
+      {/* {!isHomePage && isThin && (
         <ShowCodeButton open={codeOpen} setOpen={setCodeOpen} />
-      )}
+      )} */}
     </div>
   );
 }

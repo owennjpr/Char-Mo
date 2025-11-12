@@ -1,66 +1,84 @@
+// Enter Option Types
+type EnterRandomizedOptions = {
+  maxDelay?: number;
+  characterPool?: string;
+  startDelay?: number;
+};
+
+type EnterTypedSweepOptions = {
+  rate?: number;
+  cursor?: string;
+  startDelay?: number;
+};
+
+type EnterNumberSweepOptions = {
+  rate?: number;
+  cyclesPerDigit?: number;
+  characterPool?: string;
+  startDelay?: number;
+  direction?: "rtl" | "ltr";
+};
+
+// Hover Option Types
+type HoverTypedSweepOptions = {
+  rate?: number;
+  cursor?: string;
+  idle?: boolean;
+  idleRate?: number;
+};
+
+type HoverShuffleOptions = {
+  rate?: number;
+  characterPool?: string;
+  delimiter?: string;
+};
+
+type HoverTwinkleOptions = {
+  rate?: number;
+  characterPool?: string;
+  maxNum?: number;
+  opacity?: number;
+};
+
+// Morph Option Types
+
+type MorphRetypeOptions = {
+  deleteRate?: number;
+  typeRate?: number;
+  cursor?: string;
+};
+
 export type Enter =
   | {
       type: "randomized";
-      options?: {
-        maxDelay?: number;
-        characterPool?: string;
-        startDelay?: number;
-      };
+      options?: EnterRandomizedOptions;
     }
   | {
       type: "typed sweep";
-      options?: {
-        rate?: number;
-        cursor?: string;
-        startDelay?: number;
-      };
+      options?: EnterTypedSweepOptions;
     }
   | {
       type: "number sweep";
-      options?: {
-        rate?: number;
-        cyclesPerDigit?: number;
-        characterPool?: string;
-        startDelay?: number;
-        direction?: "rtl" | "ltr";
-      };
+      options?: EnterNumberSweepOptions;
     };
 
 export type Hover =
   | {
       type: "typed sweep";
-      options?: {
-        rate?: number;
-        cursor?: string;
-        idle?: boolean;
-        idleRate?: number;
-      };
+      options?: HoverTypedSweepOptions;
     }
   | {
       type: "shuffle";
-      options?: {
-        rate?: number;
-        characterPool?: string;
-        delimiter?: string;
-      };
+      options?: HoverShuffleOptions;
     }
   | {
       type: "twinkle";
-      options?: {
-        rate?: number;
-        characterPool?: string;
-        maxNum?: number;
-        opacity?: number;
-      };
+      options?: HoverTwinkleOptions;
     };
 
 export type Morph = {
   type: "retype";
-  options?: {
-    deleteRate?: number;
-    typeRate?: number;
-    cursor?: string;
-  };
+  options?: MorphRetypeOptions;
 };
 
 // internal state for characters
@@ -87,47 +105,14 @@ export type EffectFn<T extends object> = (
 ) => Promise<void>;
 
 // Enter Functions
-export type TypedSweepFn = EffectFn<{
-  rate?: number;
-  cursor?: string;
-  startDelay?: number;
-}>;
-export type NumberSweepFn = EffectFn<{
-  rate?: number;
-  cyclesPerDigit?: number;
-  characterPool?: string;
-  startDelay?: number;
-  direction?: "rtl" | "ltr";
-}>;
-export type RandomizedFn = EffectFn<{
-  maxDelay?: number;
-  characterPool?: string;
-  startDelay?: number;
-}>;
+export type RandomizedFn = EffectFn<EnterRandomizedOptions>;
+export type TypedSweepFn = EffectFn<EnterTypedSweepOptions>;
+export type NumberSweepFn = EffectFn<EnterNumberSweepOptions>;
 
 // Hover Functions
-export type CursorSweepFn = EffectFn<{
-  rate?: number;
-  cursor?: string;
-  idle?: boolean;
-  idleRate?: number;
-}>;
-
-export type WordShuffleFn = EffectFn<{
-  rate?: number;
-  characterPool?: string;
-}>;
-
-export type TwinkleFn = EffectFn<{
-  rate?: number;
-  maxNum?: number;
-  characterPool?: string;
-  opacity?: number;
-}>;
+export type CursorSweepFn = EffectFn<HoverTypedSweepOptions>;
+export type WordShuffleFn = EffectFn<HoverShuffleOptions>;
+export type TwinkleFn = EffectFn<HoverTwinkleOptions>;
 
 // Morph Functions
-export type RetypeFn = EffectFn<{
-  deleteRate?: number;
-  typeRate?: number;
-  cursor?: string;
-}>;
+export type RetypeFn = EffectFn<MorphRetypeOptions>;

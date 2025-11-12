@@ -224,6 +224,14 @@ function Gallery() {
                     <td>number</td>
                     <td>0</td>
                   </tr>
+                  <tr>
+                    <td>direction</td>
+                    <td>whether numbers move right to left or left to right</td>
+                    <td>
+                      {`"ltr"`} or{` "rtl"`}
+                    </td>
+                    <td>{`"rtl"`}</td>
+                  </tr>
                 </tbody>
               </table>
             </td>
