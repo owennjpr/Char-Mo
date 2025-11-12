@@ -35,7 +35,7 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
             A collection of ASCII character based text animations built with
             React and TypeScript and bundled into an npm package. This site
             includes documentation for the package as well as examples and code
-            snippets for individual effects.
+            snippets for individual effects.sdjflaksdg;lksdjg;laksdjg;alsdkjg;lk
           </Txt>
           <Txt
             enter={{
