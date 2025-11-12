@@ -18,7 +18,7 @@ node_modules
 # production
 /build
 dist/
-packages/*/dist/
+/packages/react/dist
 
 # misc
 .DS_Store
