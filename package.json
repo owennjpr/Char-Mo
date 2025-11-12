@@ -4,5 +4,9 @@
   "workspaces": [
     "packages/*",
     "website"
-  ]
+  ],
+  "scripts": {
+    "build:react": "npm run build --workspace=@char-motion/react",
+    "dev": "npm run dev --workspace=website"
+  }
 }
