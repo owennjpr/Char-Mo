@@ -18,7 +18,7 @@ node_modules
 # production
 /build
 dist/
-/packages/react/dist
+packages/react/dist
 
 # misc
 .DS_Store
@@ -33,3 +33,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+packages/react/dist/index.cjs
