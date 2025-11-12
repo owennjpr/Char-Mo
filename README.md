@@ -4,7 +4,7 @@
 
 Char(acter) Motion is an [npm package](https://www.npmjs.com/package/@char-motion/react) containing a collection of ASCII character based text animations/effects for use in React applications. To read the docs, see examples, and get more information, check out the [website](https://char-motion.vercel.app/)
 
-This readme is broken into 2 parts:
+This readme is broken into:
 
 1. [Package Usage](#package-usage)
 2. [How to Contribute](#contribution)
@@ -92,4 +92,5 @@ If you are already familiar with working in Next.js feel free to stop here, and 
 This package is created and managed by Owen Prendergast.
 
 Home page logo on the website was made with [patorjk's text to ASCII art generator](https://patorjk.com/software/taag/)
+
 
