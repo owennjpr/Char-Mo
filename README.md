@@ -54,10 +54,42 @@ Effects that trigger when the child string is changed
 
 # Contribution
 
-I very much welcome contributions from anyone who has a cool idea for how to expand or improve this package. This section is meant for developers who want to directly work in this codebase, but if you have a suggestion you’re not sure how to implement, please feel free to open a feature request issue, I'd love to hear your ideas!
+I very much welcome contributions from anyone who has a cool idea for how to expand or improve this project. This section is meant for developers who want to directly work in this codebase, but if you have a suggestion you’re not sure how to implement, please feel free to open a feature request issue, I'd love to hear your ideas!
+
+To get started, run:
+
+        git clone https://github.com/owennjpr/char-motion.git
+        cd char-motion
+
+Now you have all the code for both the package itself (/packages/react) and the website (/website). From here you need to install all necessary node modules and build the local version of the package:
+
+        npm install
+        npm run build:react
+
+Its important to note that you will need to rerun the build command whenever you make changes to the package if you want to see them reflected in the website dev build. Speaking of the dev build, run the following command to start it running on http://localhost:3000/:
+
+        npm run dev
+
+If you are already familiar with working in Next.js feel free to stop here, and mess with the website at your leisure to test out any changes you make to the package. For anyone who hasn't used Next before you can follow along with the steps below to get setup. 
+
+1. In the /website/src/app directory, create a new folder called test
+2. In this folder create a file called page.tsx
+3. Drop this boilerplate into page.tsx:
+
+        "use client";
+        import { Txt } from "@char-motion/react";
+        import React from "react";
+        
+        function Test() {
+          return <Txt>Hello World!</Txt>;
+        }
+        
+        export default Test;
+4. run npm run dev if you haven't yet, and go to http://localhost:3000/test to see the hello world.
 
 # Credits
 
 This package is created and managed by Owen Prendergast.
 
 Home page logo on the website was made with [patorjk's text to ASCII art generator](https://patorjk.com/software/taag/)
+
