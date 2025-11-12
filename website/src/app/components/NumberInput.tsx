@@ -23,7 +23,7 @@ function NumberInput(props: NumberInputProps) {
           setState(Math.max(min, Math.min(val, max)));
         }
       }}
-      className={`h-6 mt-2 border-b-1 border-[rgb(239, 233, 213) font-cutive text-2xl text-right invalid:bg-red-800`}
+      className={`h-6 mt-2 border-b border-[rgb(239, 233, 213) font-cutive text-2xl text-right invalid:bg-red-800`}
       style={{ width: digits + "rem" }}
     />
   );
