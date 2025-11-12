@@ -4,6 +4,14 @@
 
 Char(acter) Motion is an [npm package](https://www.npmjs.com/package/@char-motion/react) containing a collection of ASCII character based text animations/effects for use in React applications. To read the docs, see examples, and get more information, check out the [website](https://char-motion.vercel.app/)
 
+This readme is broken into 2 parts:
+1. [Package Usage](#package-usage)
+2. [How to Contribute](#contribution)
+
+
+
+# Package Usage
+
 ## Installation
 
         npm i @char-motion/react
@@ -44,4 +52,8 @@ Effects that trigger when the child string is changed
 
 - retype: deletes the characters right to left and retypes them left to right
 
+
+# Contribution
+
 home page logo made with [patorjk's text to ASCII art generator](https://patorjk.com/software/taag/)
+
