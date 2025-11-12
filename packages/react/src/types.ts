@@ -22,6 +22,7 @@ export type Enter =
         cyclesPerDigit?: number;
         characterPool?: string;
         startDelay?: number;
+        direction?: "rtl" | "ltr";
       };
     };
 
@@ -96,6 +97,7 @@ export type NumberSweepFn = EffectFn<{
   cyclesPerDigit?: number;
   characterPool?: string;
   startDelay?: number;
+  direction?: "rtl" | "ltr";
 }>;
 export type RandomizedFn = EffectFn<{
   maxDelay?: number;

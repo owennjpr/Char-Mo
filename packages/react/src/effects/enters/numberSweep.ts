@@ -8,6 +8,7 @@ export const numberSweep: NumberSweepFn = async (
     cyclesPerDigit?: number;
     characterPool?: string;
     startDelay?: number;
+    direction?: "ltr" | "rtl";
   }
 ) => {
   const {
@@ -15,6 +16,7 @@ export const numberSweep: NumberSweepFn = async (
     cyclesPerDigit = 5,
     characterPool = "0123456789",
     startDelay = 0,
+    direction = "rtl",
   } = options || {};
 
   await new Promise((r) => setTimeout(r, startDelay));
@@ -25,12 +27,17 @@ export const numberSweep: NumberSweepFn = async (
     const index = Math.floor(remainingCycles / Math.max(cyclesPerDigit, 1));
 
     for (let i = 0; i < text.length; i++) {
-      if (i < index) {
-        text[i].char =
-          characterPool[Math.floor(Math.random() * characterPool.length)];
-      } else {
-        text[i].char = text[i].target;
+      let shouldScramble = false;
+
+      if (direction === "rtl") {
+        shouldScramble = i < index;
+      } else if (direction === "ltr") {
+        shouldScramble = i >= text.length - index;
       }
+
+      text[i].char = shouldScramble
+        ? characterPool[Math.floor(Math.random() * characterPool.length)]
+        : text[i].target;
     }
 
     setText([...text]);
