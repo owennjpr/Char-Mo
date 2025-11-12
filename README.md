@@ -70,11 +70,10 @@ Its important to note that you will need to rerun the build command whenever you
 
         npm run dev
 
-If you are already familiar with working in Next.js feel free to stop here, and mess with the website at your leisure to test out any changes you make to the package. For anyone who hasn't used Next before you can follow along with the steps below to get setup. 
+To test your changes to the package:
 
 1. In the /website/src/app directory, create a new folder called test
-2. In this folder create a file called page.tsx
-3. Drop this boilerplate into page.tsx:
+2. In this folder create a page.tsx file with this initial boilerplate:
 
         "use client";
         import { Txt } from "@char-motion/react";
@@ -85,12 +84,17 @@ If you are already familiar with working in Next.js feel free to stop here, and 
         }
         
         export default Test;
-4. run npm run dev if you haven't yet, and go to http://localhost:3000/test to see the hello world.
+3. run npm run dev if you haven't yet, and go to http://localhost:3000/test to see the hello world.
+
+Please make all your website edits in this ignored "test" directory, unless you are making an intentional change to the website (i.e adding your new effect description to the gallery page)
 
 # Credits
 
-This package is created and managed by Owen Prendergast.
+This package is created and managed by [Owen Prendergast](https://github.com/owennjpr).
+
+Thank you to [LordofManKid](https://github.com/LordofMankid) for early testing and contributions!
 
 Home page logo on the website was made with [patorjk's text to ASCII art generator](https://patorjk.com/software/taag/)
+
 
 
