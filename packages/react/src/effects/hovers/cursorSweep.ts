@@ -1,14 +1,14 @@
-import { CursorSweepFn, LetterState, HoverState } from "../../types";
+import {
+  CursorSweepFn,
+  LetterState,
+  HoverState,
+  HoverTypedSweepOptions,
+} from "../../types";
 
 export const cursorSweep: CursorSweepFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: {
-    rate?: number;
-    cursor?: string;
-    idle?: boolean;
-    idleRate?: number;
-  },
+  options?: HoverTypedSweepOptions,
   hover?: () => HoverState
 ) => {
   // Reset to original state when hover is false

@@ -1,13 +1,14 @@
-import { HoverState, LetterState, WordShuffleFn } from "../../types";
+import {
+  HoverShuffleOptions,
+  HoverState,
+  LetterState,
+  WordShuffleFn,
+} from "../../types";
 
 export const wordShuffle: WordShuffleFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: {
-    rate?: number;
-    characterPool?: string;
-    delimiter?: string;
-  },
+  options?: HoverShuffleOptions,
   hover?: () => HoverState
 ) => {
   const {

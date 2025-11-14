@@ -1,9 +1,9 @@
-import { LetterState, RandomizedFn } from "../../types";
+import { EnterRandomizedOptions, LetterState, RandomizedFn } from "../../types";
 
 export const randomized: RandomizedFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: { maxDelay?: number; characterPool?: string; startDelay?: number }
+  options?: EnterRandomizedOptions
 ) => {
   const {
     maxDelay = 1000,

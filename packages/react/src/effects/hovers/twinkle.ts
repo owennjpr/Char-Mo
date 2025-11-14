@@ -1,14 +1,14 @@
-import { LetterState, TwinkleFn, HoverState } from "../../types";
+import {
+  LetterState,
+  TwinkleFn,
+  HoverState,
+  HoverTwinkleOptions,
+} from "../../types";
 
 export const twinkle: TwinkleFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: {
-    rate?: number;
-    maxNum?: number;
-    characterPool?: string;
-    opacity?: number;
-  },
+  options?: HoverTwinkleOptions,
   hover?: () => HoverState
 ) => {
   const {

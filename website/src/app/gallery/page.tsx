@@ -76,7 +76,7 @@ function Gallery() {
               </div>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0 ">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -130,7 +130,7 @@ function Gallery() {
               </div>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -184,7 +184,7 @@ function Gallery() {
               </div>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -245,7 +245,7 @@ function Gallery() {
               </Txt>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -298,7 +298,7 @@ function Gallery() {
               </Txt>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -347,7 +347,7 @@ function Gallery() {
               </Txt>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -393,21 +393,57 @@ function Gallery() {
               </table>
             </td>
           </tr>
+          <tr className="bg-[#00A2]">
+            <td>Hover</td>
+            <td>Case</td>
+            <td>
+              <Txt hover={{ type: "case" }} className="text-left">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                {/* {lorem} */}
+              </Txt>
+            </td>
+            <td>
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
+                <colgroup>
+                  <col style={{ width: "20%" }} />
+                  <col style={{ width: "50%" }} />
+                  <col style={{ width: "20%" }} />
+                  <col style={{ width: "10%" }} />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>type</td>
+                    <td>whether to make upper or lower case</td>
+                    <td>
+                      {`"upper"`} or {`"lower"`}
+                    </td>
+                    <td>{`"upper"`}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
           <tr className="bg-[#A001]">
             <td>Morph</td>
             <td>Retype</td>
             <td>
               <div className="flex flex-row justify-between gap-1 sm:gap-4 items-center px-1 sm:px-4">
                 <Txt morph={{ type: "retype" }} className="text-left">
-                  {morph1
-                    ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
-                    : "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+                  {morph1 ? "Hello World!" : "Hello Universe!"}
                 </Txt>
                 <MorphButton morph={morph1} setMorph={setMorph1} />
               </div>
             </td>
             <td>
-              <table className="w-full h-full">
+              <table className="w-full h-full [&_th]:border-t-0 [&_td]:border-b-0">
                 <colgroup>
                   <col style={{ width: "20%" }} />
                   <col style={{ width: "50%" }} />
@@ -440,6 +476,14 @@ function Gallery() {
                     <td>character to use as cursor</td>
                     <td>string</td>
                     <td>_</td>
+                  </tr>
+                  <tr>
+                    <td>keepCommonStart</td>
+                    <td>
+                      whether to only delete different characters or delete all
+                    </td>
+                    <td>boolean</td>
+                    <td>true</td>
                   </tr>
                 </tbody>
               </table>

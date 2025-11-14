@@ -1,9 +1,9 @@
-import { LetterState, TypedSweepFn } from "../../types";
+import { EnterTypedSweepOptions, LetterState, TypedSweepFn } from "../../types";
 
 export const typedSweep: TypedSweepFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: { rate?: number; cursor?: string; startDelay?: number }
+  options?: EnterTypedSweepOptions
 ) => {
   const { rate = 40, cursor = "_", startDelay = 0 } = options || {};
 

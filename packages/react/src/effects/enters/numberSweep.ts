@@ -1,15 +1,13 @@
-import { LetterState, NumberSweepFn } from "../../types";
+import {
+  EnterNumberSweepOptions,
+  LetterState,
+  NumberSweepFn,
+} from "../../types";
 
 export const numberSweep: NumberSweepFn = async (
   text: LetterState[],
   setText: (t: LetterState[]) => void,
-  options?: {
-    rate?: number;
-    cyclesPerDigit?: number;
-    characterPool?: string;
-    startDelay?: number;
-    direction?: "ltr" | "rtl";
-  }
+  options?: EnterNumberSweepOptions
 ) => {
   const {
     rate = 40,

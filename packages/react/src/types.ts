@@ -1,17 +1,17 @@
 // Enter Option Types
-type EnterRandomizedOptions = {
+export type EnterRandomizedOptions = {
   maxDelay?: number;
   characterPool?: string;
   startDelay?: number;
 };
 
-type EnterTypedSweepOptions = {
+export type EnterTypedSweepOptions = {
   rate?: number;
   cursor?: string;
   startDelay?: number;
 };
 
-type EnterNumberSweepOptions = {
+export type EnterNumberSweepOptions = {
   rate?: number;
   cyclesPerDigit?: number;
   characterPool?: string;
@@ -20,32 +20,37 @@ type EnterNumberSweepOptions = {
 };
 
 // Hover Option Types
-type HoverTypedSweepOptions = {
+export type HoverTypedSweepOptions = {
   rate?: number;
   cursor?: string;
   idle?: boolean;
   idleRate?: number;
 };
 
-type HoverShuffleOptions = {
+export type HoverShuffleOptions = {
   rate?: number;
   characterPool?: string;
   delimiter?: string;
 };
 
-type HoverTwinkleOptions = {
+export type HoverTwinkleOptions = {
   rate?: number;
   characterPool?: string;
   maxNum?: number;
   opacity?: number;
 };
 
+export type HoverCaseOptions = {
+  type?: "upper" | "lower";
+};
+
 // Morph Option Types
 
-type MorphRetypeOptions = {
+export type MorphRetypeOptions = {
   deleteRate?: number;
   typeRate?: number;
   cursor?: string;
+  keepCommonStart?: boolean;
 };
 
 export type Enter =
@@ -74,6 +79,10 @@ export type Hover =
   | {
       type: "twinkle";
       options?: HoverTwinkleOptions;
+    }
+  | {
+      type: "case";
+      options?: HoverCaseOptions;
     };
 
 export type Morph = {
@@ -113,6 +122,7 @@ export type NumberSweepFn = EffectFn<EnterNumberSweepOptions>;
 export type CursorSweepFn = EffectFn<HoverTypedSweepOptions>;
 export type WordShuffleFn = EffectFn<HoverShuffleOptions>;
 export type TwinkleFn = EffectFn<HoverTwinkleOptions>;
+export type CaseFn = EffectFn<HoverCaseOptions>;
 
 // Morph Functions
 export type RetypeFn = EffectFn<MorphRetypeOptions>;

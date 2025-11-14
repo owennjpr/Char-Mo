@@ -49,7 +49,7 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
           <div className="w-full flex flex-col sm:flex-row items-center sm:justify-around font-cutive gap-2">
             <LinkButton path={"documentation"}>
               <Txt
-                // enter={{ type: "randomized", options: { maxDelay: 1000 } }}
+                hover={{ type: "case" }}
                 className="text-base/3 sm:text-xl/4 whitespace-pre-wrap w-[240]"
               >
                 {`+---------------+
@@ -59,7 +59,7 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
             </LinkButton>
             <LinkButton path={"gallery"}>
               <Txt
-                // enter={{ type: "randomized", options: { maxDelay: 1000 } }}
+                hover={{ type: "case" }}
                 className="text-base/3 sm:text-xl/4 whitespace-pre-wrap w-[240]"
               >
                 {`+----------------+
@@ -68,8 +68,11 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
               </Txt>
             </LinkButton>
           </div>
-          <div className="flex flex-row pt-4 gap-4 items-center opacity-50">
-            <a href="https://github.com/owennjpr/char-motion">
+          <div className="flex flex-row pt-4 gap-4 items-center ">
+            <a
+              href="https://github.com/owennjpr/char-motion"
+              className="opacity-50"
+            >
               <svg
                 width="24"
                 height="24"
@@ -84,7 +87,11 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
                 />
               </svg>
             </a>
-            <a href="https://www.npmjs.com/package/@char-motion/react">
+            <Txt className="text-sm">v0.2.0</Txt>
+            <a
+              href="https://www.npmjs.com/package/@char-motion/react"
+              className="opacity-50"
+            >
               <svg
                 width="24px"
                 height="24px"
@@ -101,7 +108,8 @@ ${"`"}Mb.     ,'   MM    MM  8M   MM    MM           M  ${"`"}YM'   MM YA.   ,A9
               </svg>
             </a>
           </div>
-          <Txt className="pt-2 text-sm">Created by Owen Prendergast</Txt>
+
+          <Txt className="text-sm pt-2">Created by Owen Prendergast</Txt>
         </div>
       </div>
     </div>
