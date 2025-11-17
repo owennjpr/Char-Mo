@@ -1,3 +1,4 @@
+// THIS IS AN OLD IMPLEMENTATION DO NOT USE (go to packages/react/effects for up to date version)
 import React, { useEffect, useState } from "react";
 
 interface HoverSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {

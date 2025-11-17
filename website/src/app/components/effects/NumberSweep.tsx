@@ -1,3 +1,5 @@
+// THIS IS AN OLD IMPLEMENTATION DO NOT USE (go to packages/react/effects for up to date version)
+
 import React, { useEffect, useRef, useState } from "react";
 
 interface NumberSweepProps extends React.HTMLAttributes<HTMLParagraphElement> {

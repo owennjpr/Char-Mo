@@ -42,10 +42,10 @@ export type HoverTwinkleOptions = {
 
 export type HoverCaseOptions = {
   type?: "upper" | "lower";
+  extraMappings?: { [key: string]: string };
 };
 
 // Morph Option Types
-
 export type MorphRetypeOptions = {
   deleteRate?: number;
   typeRate?: number;

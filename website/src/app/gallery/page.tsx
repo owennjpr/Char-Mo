@@ -427,6 +427,12 @@ function Gallery() {
                     </td>
                     <td>{`"upper"`}</td>
                   </tr>
+                  <tr>
+                    <td>extraMappings</td>
+                    <td>add extra character mappings beyond the alphabet</td>
+                    <td>{`{[key: string]: string}`}</td>
+                    <td>{`{}`}</td>
+                  </tr>
                 </tbody>
               </table>
             </td>
