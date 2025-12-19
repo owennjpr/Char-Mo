@@ -110,6 +110,12 @@ function Gallery() {
                     <td>number</td>
                     <td>0</td>
                   </tr>
+                  <tr>
+                    <td>direction</td>
+                    <td>which side/direction the cursor starts/moves</td>
+                    <td>{`"ltr" or "rtl"`}</td>
+                    <td>{`"ltr"`}</td>
+                  </tr>
                 </tbody>
               </table>
             </td>
