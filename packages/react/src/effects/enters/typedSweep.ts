@@ -5,23 +5,32 @@ export const typedSweep: TypedSweepFn = async (
   setText: (t: LetterState[]) => void,
   options?: EnterTypedSweepOptions
 ) => {
-  const { rate = 40, cursor = "_", startDelay = 0 } = options || {};
+  const {
+    rate = 40,
+    cursor = "_",
+    startDelay = 0,
+    direction = "ltr",
+  } = options || {};
 
   await new Promise((r) => setTimeout(r, startDelay));
 
+  // set initial empty state
   const updated = text.map((l) => ({ ...l, char: "" }));
   setText([...updated]);
 
   for (let i = 0; i < text.length; i++) {
     if (i > 0) {
       // prev char --> target
-      updated[i - 1] = {
-        ...updated[i - 1],
-        char: updated[i - 1].target,
+      const idx = direction == "ltr" ? i - 1 : text.length - i;
+      updated[idx] = {
+        ...updated[idx],
+        char: updated[idx].target,
       };
     }
 
-    updated[i] = { ...updated[i], char: cursor };
+    const cursorIdx = direction == "ltr" ? i : text.length - i - 1;
+    if (cursorIdx >= 0)
+      updated[cursorIdx] = { ...updated[cursorIdx], char: cursor };
 
     setText([...updated]);
     await new Promise((r) => setTimeout(r, rate));
@@ -29,9 +38,10 @@ export const typedSweep: TypedSweepFn = async (
 
   // handle last character
   if (updated.length > 0) {
-    updated[text.length - 1] = {
-      ...updated[text.length - 1],
-      char: updated[text.length - 1].target,
+    const lastIdx = direction == "ltr" ? text.length - 1 : 0;
+    updated[lastIdx] = {
+      ...updated[lastIdx],
+      char: updated[lastIdx].target,
     };
     setText([...updated]);
   }

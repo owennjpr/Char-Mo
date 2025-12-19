@@ -240,7 +240,7 @@ function Gallery() {
             <td>Hover</td>
             <td>Typed Sweep</td>
             <td>
-              <Txt hover={{ type: "typed sweep" }} className="text-left">
+              <Txt hover={{ type: "typed sweep" }} className="text-left p-4">
                 {lorem}
               </Txt>
             </td>
@@ -293,7 +293,7 @@ function Gallery() {
             <td>Hover</td>
             <td>Shuffle</td>
             <td>
-              <Txt hover={{ type: "shuffle" }} className="text-left">
+              <Txt hover={{ type: "shuffle" }} className="text-left p-4">
                 {lorem}
               </Txt>
             </td>
@@ -342,7 +342,7 @@ function Gallery() {
             <td>Hover</td>
             <td>Twinkle</td>
             <td>
-              <Txt hover={{ type: "twinkle" }} className="text-left">
+              <Txt hover={{ type: "twinkle" }} className="text-left p-4">
                 {lorem}
               </Txt>
             </td>
@@ -397,7 +397,7 @@ function Gallery() {
             <td>Hover</td>
             <td>Case</td>
             <td>
-              <Txt hover={{ type: "case" }} className="text-left">
+              <Txt hover={{ type: "case" }} className="text-left p-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 {/* {lorem} */}
               </Txt>

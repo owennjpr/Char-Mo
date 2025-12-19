@@ -9,6 +9,7 @@ export type EnterTypedSweepOptions = {
   rate?: number;
   cursor?: string;
   startDelay?: number;
+  direction?: "rtl" | "ltr";
 };
 
 export type EnterNumberSweepOptions = {
