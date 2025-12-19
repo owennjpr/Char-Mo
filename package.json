@@ -11,6 +11,6 @@
     "vercel-build": "npm run build --workspace=@char-motion/react && npm run build --workspace=website"
   },
   "dependencies": {
-    "next": "^15.5.7"
+    "next": "15.5.9"
   }
 }
